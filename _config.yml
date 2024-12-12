@@ -8,35 +8,35 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Your Name / Site Title"
+title                    : "Lorin Werthen-Brabants"
 title_separator          : "-"
-name                     : &name "Your Name"
-description              : &description "personal description"
+name                     : &name "Lorin Werthen-Brabants"
+description              : &description "Postdoctoral researcher at imec - IDLab - Ghent University."
 url                      : https://academicpages.github.io # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "academicpages/academicpages.github.io"
+repository               : "werthen/werthen.github.io"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
-  name             : "Your Sidebar Name"
-  pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "Red Brick University"
+  avatar           : "IMG-3951.jpg"
+  name             : "Lorin Werthen-Brabants"
+  pronouns         : "he/him"  
+  bio              : "Postdoctoral researcher at imec - IDLab - Ghent University."
+  location         : "Ghent, Belgium"
+  employer         : "imec - IDLab - Ghent University"
   uri              : # URL
-  email            : "none@example.org" 
+  email            : "lorin.werthenbrabants@ugent.be" 
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+  googlescholar    : "https://scholar.google.com/citations?hl=en&user=3KySYVQAAAAJ"
   impactstory      : # URL
-  orcid            : "http://orcid.org/yourorcidurl"
+  orcid            : "https://orcid.org/0000-0001-9976-1886"
   semantic         : # URL
-  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
+  pubmed           : "https://pubmed.ncbi.nlm.nih.gov/?sort=date&term=Werthen-Brabants+L&cauthor_id=35523811"
   researchgate     : # URL
   scopus           : # URL
 
@@ -44,25 +44,25 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "academicpages"
+  github           : "werthen"
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
   # Social media
-  bluesky          : "bsky.app" # Replace this with you Bluesky username
+  bluesky          : # "bsky.app"
   facebook         : # Username
   flickr           : # Username
   foursquare       : # Username
   goodreads        : # Username
   google_plus      : # Username
   keybase          : # Username
-  instagram        : # Username
+  instagram        : jttrmusic # Username
   lastfm           : # Username
-  linkedin         : # Username
+  linkedin         : werthen # Username
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username
-  soundcloud       : # Username
+  soundcloud       : jttrmusic # Username
   steam            : # Username
   telegram         : # URL
   tumblr           : # Username
@@ -78,9 +78,9 @@ author:
 publication_category:
   books:
     title: 'Books'
-  manuscripts:
+  journal:
     title: 'Journal Articles'    
-  conferences:
+  proceeding:
     title: 'Conference Papers'
 
 # Site Settings
