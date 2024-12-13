@@ -183,6 +183,7 @@ exclude:
   - README
   - tmp
   - vendor
+  - markdown_generator
 keep_files:
   - .git
   - .svn
