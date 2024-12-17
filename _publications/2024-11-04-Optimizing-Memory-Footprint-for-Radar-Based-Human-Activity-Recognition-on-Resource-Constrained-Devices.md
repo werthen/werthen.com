@@ -1,9 +1,9 @@
 ---
 title: "Optimizing Memory Footprint for Radar-Based Human Activity Recognition on Resource-Constrained Devices"
 collection: publications
-permalink: /publication/2024-01-01-Optimizing-Memory-Footprint-for-Radar-Based-Human-Activity-Recognition-on-Resource-Constrained-Devices
+permalink: /publication/2024-11-04-Optimizing-Memory-Footprint-for-Radar-Based-Human-Activity-Recognition-on-Resource-Constrained-Devices
 category: proceeding
-date: 2024-01-01
+date: 2024-11-04
 venue: 'the proceedings of 2024 21st European Radar Conference (EuRAD)'
 citation: ' Arash Heidari,  Lorin Werthen-Brabants,  Tom Dhaene,  Ivo Couckuyt, &quot;Optimizing Memory Footprint for Radar-Based Human Activity Recognition on Resource-Constrained Devices.&quot; In the proceedings of 2024 21st European Radar Conference (EuRAD), 2024.'
 ---
