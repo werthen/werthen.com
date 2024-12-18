@@ -57,6 +57,7 @@ redirect_from:
 ---
 
 ## Key Publications
+
 1. **Werthen-Brabants, L., et al.** (2024). "Deep Learning-Based Event Counting for Apnea-Hypopnea Index Estimation using Recursive Spiking Neural Networks." *IEEE Transactions on Biomedical Engineering*.  
    *Developed novel RSN-Count method for event-based models in sleep apnea.*
 
@@ -75,59 +76,65 @@ redirect_from:
 ---
 
 ## Awards and Recognitions
+
 - Selected as a PhD representative for the Flanders AI Research Program (2023).
 - Keynote speaker at imec's "Save Data" event on Trustworthy AI in Healthcare (2024).
 
 ---
 
 ## Leadership and Teaching
+
 - **Teaching Assistant**: Courses on Computer Science, Machine Learning, and Logic at Ghent University (2019–Present).  
 - Supervised multiple Master's theses, with students publishing conference papers under guidance.  
 
 ---
 
 ## Mobility and Research Stays
+
 - **Visiting Researcher**:  
   *University of Sydney, Australia (2022)*  
   Facilitated collaboration and guided local researchers in time series modeling.  
 
 ---
 
-Skills
-======
+## Skills
 
 ### Technical Skills
-* **Programming Languages**: Python, C, C++, MATLAB
-* **Deep Learning Frameworks**: TensorFlow, PyTorch
-* **Data Science**: 
-  * Time Series Analysis
-  * Uncertainty Quantification
-  * Statistical Modeling
-  * Data Visualization
+
+- **Programming Languages**: Python, C, C++, MATLAB
+- **Deep Learning Frameworks**: TensorFlow, PyTorch
+- **Data Science**:
+  - Time Series Analysis
+  - Uncertainty Quantification
+  - Statistical Modeling
+  - Data Visualization
 
 ### Languages
-* English (Professional)
-* Dutch (Native)
-* French (Intermediate)
+
+- English (Professional)
+- Dutch (Native)
+- French (Intermediate)
 
 ---
 
 ## Outreach and Science Communication
+
 - Featured in public AI discussions, including television appearances and online dissemination (e.g., Karrewiet 2019, VRT NWS Laat 2024).  
 - Regular reviewer for leading journals including IEEE and Nature.  
 
 ---
 
 ## References
+
 - **Prof. Dirk Deschrijver**  
   IDLab, imec, Ghent University  
 - Additional references available upon request.
 
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+<!-- ## Publications
+
+<ul>{% for post in site.publications reversed %}
+  {% include archive-single-cv.html %}
+{% endfor %}</ul> -->
   
 <!-- Talks
 ======

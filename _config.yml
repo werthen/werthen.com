@@ -184,6 +184,9 @@ exclude:
   - tmp
   - vendor
   - markdown_generator
+  - talkmap
+  - _portfolio
+  - _talks
 keep_files:
   - .git
   - .svn
