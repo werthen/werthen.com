@@ -20,7 +20,7 @@ redirect_from:
 ## Education
 
 - **PhD in Computer Science**  
-  *Ghent University* (2020–2024)  
+  *Ghent University* (2019–2023)  
   Dissertation: "Quantifying Uncertainty and Improving Reliability of Time-Series Based Deep Learning Models"  
   Promotors: Prof. Tom Dhaene, Prof. Dirk Deschrijver  
 
