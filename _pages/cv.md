@@ -75,6 +75,12 @@ redirect_from:
 
 ---
 
+## Grants and Funding
+
+- **FWO PhD Fellowship**: Funded by the Research Foundation Flanders (FWO) for PhD research on Trustworthy ML and uncertainty quantification in deep learning (2025–2028).
+
+---
+
 ## Awards and Recognitions
 
 - Selected as a PhD representative for the Flanders AI Research Program (2023).
@@ -86,6 +92,8 @@ redirect_from:
 
 - **Teaching Assistant**: Courses on Computer Science, Machine Learning, and Logic at Ghent University (2019–Present).  
 - Supervised multiple Master's theses, with students publishing conference papers under guidance.  
+  - Vincent-De Sloover, Louis, et al. "Tailoring Radar-Based Patient Monitoring Models to Real-Life Needs using Utility Maximization." 2022 19th European Radar Conference (EuRAD). IEEE, 2022.
+  - Tuytte, Victor, et al. "Optimized Data Transmission for Radar-Based Edge-Cloud Human Activity Recognition via Quantization." 2024 21st European Radar Conference (EuRAD). IEEE, 2024.
 
 ---
 
