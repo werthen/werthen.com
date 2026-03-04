@@ -22,7 +22,7 @@ redirect_from:
 - **PhD in Computer Science**  
   *Ghent University* (2019–2023)  
   Dissertation: "Quantifying Uncertainty and Improving Reliability of Time-Series Based Deep Learning Models"  
-  Promotors: Prof. Tom Dhaene, Prof. Dirk Deschrijver  
+  Promotors: Prof. dr. ir. Tom Dhaene, Prof. dr. mult. Dirk Deschrijver  
 
 - **MSc in Computer Science**  
   *Ghent University* (2018)  
@@ -42,12 +42,16 @@ redirect_from:
 
 ## Professional Experience
 
+- **Postdoctoral Fellow**  
+  FWO & IDLab - imec, Ghent University (2025–2028)
+  Focus on Trustworthy Machine Learning (TML) and uncertainty quantification in deep learning models, with applications in healthcare diagnostics.
+
 - **Postdoctoral Researcher**  
-  IDLab, imec, Ghent University (2023–Present)  
+  IDLab - imec, Ghent University (2023–Present)  
   Research focuses on event-based deep learning techniques for healthcare diagnostics and energy-efficient machine learning.
 
 - **PhD Student**  
-  IDLab, imec, Ghent University (2019–2023)  
+  IDLab - imec, Ghent University (2019–2023)  
   Title of dissertation: "Quantifying Uncertainty and Improving Reliability of Time-Series Based Deep Learning Models".
 
 - **Machine Learning Engineer**  
@@ -84,7 +88,6 @@ redirect_from:
 ## Awards and Recognitions
 
 - Selected as a PhD representative for the Flanders AI Research Program (2023).
-- Keynote speaker at imec's "Save Data" event on Trustworthy AI in Healthcare (2024).
 
 ---
 
@@ -122,12 +125,13 @@ redirect_from:
 - English (Professional)
 - Dutch (Native)
 - French (Intermediate)
+- Spanish (Basic)
 
 ---
 
 ## Outreach and Science Communication
 
-- Featured in public AI discussions, including television appearances and online dissemination (e.g., Karrewiet 2019, VRT NWS Laat 2024).  
+- Featured in public AI discussions, including television appearances (e.g., Karrewiet 2019, VRT NWS Laat 2024).  
 - Regular reviewer for leading journals including IEEE and Nature.  
 
 ---
