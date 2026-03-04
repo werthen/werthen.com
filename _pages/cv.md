@@ -47,7 +47,7 @@ redirect_from:
   Focus on Trustworthy Machine Learning (TML) and uncertainty quantification in deep learning models, with applications in healthcare diagnostics.
 
 - **Postdoctoral Researcher**  
-  IDLab - imec, Ghent University (2023–Present)  
+  IDLab - imec, Ghent University (2023-2025)  
   Research focuses on event-based deep learning techniques for healthcare diagnostics and energy-efficient machine learning.
 
 - **PhD Student**  
