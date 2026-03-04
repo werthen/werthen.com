@@ -11,7 +11,7 @@ in
     name = "werthen.com";
     buildInputs = [env ruby];
 
-    shellHook = ''
-      exec ${env}/bin/jekyll serve --watch
-    '';
+    #shellHook = ''
+    #  exec ${env}/bin/jekyll serve --watch
+    #'';
   }

@@ -6,32 +6,126 @@ author_profile: true
 ---
 
 {% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
+  <div class="wordwrap pub-intro">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
 {% endif %}
 
 {% include base_path %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% assign sorted_posts = site.publications | sort: 'date' | reverse %}
-    {% for post in sorted_posts %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }} ({{ site.publications | where: "category", category[0] | size }})</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
+{% assign pubs_sorted = site.publications | sort: "date" | reverse %}
+{% assign journals_count = site.publications | where: "category", "journal" | size %}
+{% assign proceedings_count = site.publications | where: "category", "proceeding" | size %}
+{% assign books_count = site.publications | where: "category", "books" | size %}
 
+<section class="pub-toolbar" aria-label="Publication filters">
+  <div class="pub-search-wrap">
+    <label for="pub-search" class="pub-label">Search</label>
+    <input id="pub-search" class="pub-search" type="search" placeholder="Search title, venue, keyword..." autocomplete="off">
+  </div>
+  <div class="pub-filters" role="group" aria-label="Filter by type">
+    <button class="pub-filter is-active" data-filter="all" type="button">All <span>{{ site.publications | size }}</span></button>
+    <button class="pub-filter" data-filter="journal" type="button">Journal <span>{{ journals_count }}</span></button>
+    <button class="pub-filter" data-filter="proceeding" type="button">Proceeding <span>{{ proceedings_count }}</span></button>
+    <button class="pub-filter" data-filter="books" type="button">Books <span>{{ books_count }}</span></button>
+  </div>
+  <p id="pub-results" class="pub-results" aria-live="polite"></p>
+</section>
+
+<section class="pub-year-jump" aria-label="Jump to year">
+  {% assign shown_year = "" %}
+  {% for post in pubs_sorted %}
+    {% assign y = post.date | date: "%Y" %}
+    {% unless shown_year contains y %}
+      <a href="#pub-year-{{ y }}">{{ y }}</a>
+      {% capture shown_year %}{{ shown_year }} {{ y }}{% endcapture %}
+    {% endunless %}
+  {% endfor %}
+</section>
+
+<div class="pub-list" id="pub-list">
+  {% assign current_year = "" %}
+  {% for post in pubs_sorted %}
+    {% assign y = post.date | date: "%Y" %}
+    {% if y != current_year %}
+      {% unless current_year == "" %}
+        </div>
+      </section>
+      {% endunless %}
+      <section class="pub-year-group" id="pub-year-{{ y }}" data-year-group="{{ y }}">
+        <h2 class="pub-year-heading">{{ y }}</h2>
+        <div class="pub-year-items">
+      {% assign current_year = y %}
+    {% endif %}
+
+    {% capture search_blob %}{{ post.title }} {{ post.venue }} {{ post.tldr }} {{ post.citation }}{% endcapture %}
+    <article
+      class="pub-item"
+      data-category="{{ post.category | default: 'unknown' }}"
+      data-year="{{ y }}"
+      data-search="{{ search_blob | downcase | strip_html | normalize_whitespace | escape }}"
+    >
+      <header class="pub-item-head">
+        <h3 class="pub-item-title">
+          <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+        </h3>
+        <p class="pub-item-meta">
+          <span class="pub-type">{{ post.category | default: "other" }}</span>
+          {% if post.venue %}<span class="pub-dot">•</span><span class="pub-venue">{{ post.venue }}</span>{% endif %}
+        </p>
+      </header>
+      {% if post.tldr %}
+        <p class="pub-item-tldr">{{ post.tldr }}</p>
+      {% endif %}
+    </article>
+  {% endfor %}
+  {% unless current_year == "" %}
+      </div>
+    </section>
+  {% endunless %}
+</div>
+
+<script>
+  (function () {
+    const search = document.getElementById('pub-search');
+    const buttons = Array.from(document.querySelectorAll('.pub-filter'));
+    const items = Array.from(document.querySelectorAll('.pub-item'));
+    const groups = Array.from(document.querySelectorAll('.pub-year-group'));
+    const results = document.getElementById('pub-results');
+    let activeFilter = 'all';
+
+    function applyFilters() {
+      const term = (search.value || '').trim().toLowerCase();
+      let visibleCount = 0;
+
+      items.forEach((item) => {
+        const category = item.dataset.category || '';
+        const haystack = item.dataset.search || '';
+        const matchesType = activeFilter === 'all' || category === activeFilter;
+        const matchesSearch = term === '' || haystack.includes(term);
+        const show = matchesType && matchesSearch;
+        item.style.display = show ? '' : 'none';
+        if (show) visibleCount += 1;
+      });
+
+      groups.forEach((group) => {
+        const anyVisible = group.querySelector('.pub-item:not([style*="display: none"])');
+        group.style.display = anyVisible ? '' : 'none';
+      });
+
+      results.textContent = visibleCount + ' publication' + (visibleCount === 1 ? '' : 's') + ' shown';
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeFilter = btn.dataset.filter;
+        buttons.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        applyFilters();
+      });
+    });
+
+    search.addEventListener('input', applyFilters);
+    applyFilters();
+  })();
+</script>
 
 

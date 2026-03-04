@@ -6,5 +6,6 @@ category: proceeding
 date: 2022-10-25
 venue: 'the proceedings of 2022 19th European Radar Conference (EuRAD)'
 citation: ' Lorin Werthen-Brabants,  Geethika Bhavanasi,  Ivo Couckuyt,  Tom Dhaene,  Dirk Deschrijver, &quot;Quantifying Uncertainty in Real Time with Split BiRNN for Radar Human Activity Recognition.&quot; In the proceedings of 2022 19th European Radar Conference (EuRAD), 2022.'
+tldr: "This work adds real-time uncertainty estimates to Split BiRNN radar activity recognition for more reliable decision-making."
 ---
 Use [Google Scholar](https://scholar.google.com/scholar?q=Quantifying+Uncertainty+in+Real+Time+with+Split+BiRNN+for+Radar+Human+Activity+Recognition){:target="_blank"} for full citation

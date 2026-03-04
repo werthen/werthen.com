@@ -6,5 +6,6 @@ category: proceeding
 date: 2024-01-04
 venue: 'the proceedings of AIAA SCITECH 2024 Forum'
 citation: ' Arash Heidari,  Lorin Werthen-Brabants,  Tom Dhaene,  Ivo Couckuyt,  Can Onur,  Pieter Gils,  Ivana Jojic, &quot;Data-Driven Surrogate Modeling for the Flammability Reduction System.&quot; In the proceedings of AIAA SCITECH 2024 Forum, 2024.'
+tldr: "Data-driven surrogate models accelerate analysis of fuel-tank flammability reduction system behavior."
 ---
 Use [Google Scholar](https://scholar.google.com/scholar?q=Data+Driven+Surrogate+Modeling+for+the+Flammability+Reduction+System){:target="_blank"} for full citation

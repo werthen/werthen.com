@@ -7,23 +7,46 @@ redirect_from:
   - /about.html
 ---
 
-I am a postdoctoral researcher specializing in Trustworthy Machine Learning (TML), with a focus on healthcare applications. I earned my PhD in Computer Science from Ghent University in 2023, where my dissertation centered on quantifying uncertainty and improving the reliability of time-series-based deep learning models. I have a strong background in machine learning, with experience spanning academia and industry. My postdoctoral work focuses on advancing state-of-the-art methodologies for healthcare diagnostics. I am open to talks, please contact me on one of the channels shown on the left.
-
-## Research overview
-
-My recent work spans trustworthy ML for healthcare, uncertainty-aware modeling, and radar/sensor-based activity recognition, with a strong focus on reliability in real-world deployment.
-
-{% assign pubs_total = site.publications | size %}
 {% assign pubs_sorted = site.publications | sort: "date" | reverse %}
 {% assign pubs_recent = pubs_sorted | slice: 0, 3 %}
 {% assign excluded_venues = "medRxiv" | split: "|" %}
-{% assign recent_venues = pubs_recent | map: "venue" | compact | uniq %}
 
-- Publications: **{{ pubs_total }}** total
-- Recent venues include {% assign shown_count = 0 %}{% for venue in recent_venues %}{% unless excluded_venues contains venue %}{% assign shown_count = shown_count | plus: 1 %}{% endunless %}{% endfor %}{% assign shown_index = 0 %}{% for venue in recent_venues %}{% unless excluded_venues contains venue %}{% assign shown_index = shown_index | plus: 1 %}{% if shown_index > 1 %}{% if shown_index == shown_count %} and {% else %}, {% endif %}{% endif %}{{ venue }}{% endunless %}{% endfor %}
+<div class="home-hero">
+  <p class="home-lead">
+    I am a postdoctoral researcher in Trustworthy Machine Learning (TML), focused on healthcare applications and reliable real-world deployment.
+  </p>
+  <p>
+    I earned my PhD in Computer Science from Ghent University (2023), where my dissertation centered on uncertainty quantification and robust deep learning for time-series problems. My current work advances trustworthy methods for diagnostics and patient monitoring.
+  </p>
+</div>
 
-### Recent papers
-
-{% for post in pubs_recent %}
-- [{{ post.title }}]({{ base_path }}{{ post.url }}) ({{ post.date | date: "%Y" }})
-{% endfor %}
+<section class="home-recent" aria-label="Recent papers">
+  <h2>Recent papers</h2>
+  <ul class="home-recent-list pub-year-items">
+    {% for post in pubs_recent %}
+      <li>
+        <article class="home-paper-main pub-item">
+          <h3 class="home-paper-title pub-item-title">
+            <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+          </h3>
+          <p class="home-paper-meta pub-item-meta">
+            <span class="home-paper-year">{{ post.date | date: "%Y" }}</span>
+            {% if post.venue %}
+              {% unless excluded_venues contains post.venue %}
+                <span class="home-paper-sep">-</span>
+                <span class="home-paper-venue">{{ post.venue }}</span>
+              {% endunless %}
+            {% endif %}
+          </p>
+          {% if post.tldr %}
+            <p class="home-paper-tldr pub-item-tldr">
+              <span class="home-paper-tldr-label">TL;DR</span>
+              <span class="home-paper-tldr-text">{{ post.tldr }}</span>
+            </p>
+          {% endif %}
+        </article>
+      </li>
+    {% endfor %}
+  </ul>
+  <p class="home-publications-link"><a href="{{ base_path }}/publications/">View all publications</a></p>
+</section>
