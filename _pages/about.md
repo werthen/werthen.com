@@ -15,13 +15,23 @@ redirect_from:
   <p class="home-lead">
     I am a postdoctoral researcher in Trustworthy Machine Learning (TML), focused on healthcare applications and reliable real-world deployment.
   </p>
-  <p>
+
+<div class="home-tags">
+    <span class="home-tag"><i class="fas fa-shield-halved" aria-hidden="true"></i> Trustworthy ML</span>
+    <span class="home-tag"><i class="fas fa-heart-pulse" aria-hidden="true"></i> Healthcare AI</span>
+    <span class="home-tag"><i class="fas fa-chart-line" aria-hidden="true"></i> Uncertainty Quantification</span>
+    <span class="home-tags-break" aria-hidden="true"></span>
+    <span class="home-tag"><i class="fas fa-brain" aria-hidden="true"></i> Deep Learning</span>
+    <span class="home-tag"><i class="fas fa-wave-square" aria-hidden="true"></i> Time-Series</span>
+  </div>
+
+  <p class="home-bio">
     I earned my PhD in Computer Science from Ghent University (2023), where my dissertation centered on uncertainty quantification and robust deep learning for time-series problems. My current work advances trustworthy methods for diagnostics and patient monitoring.
   </p>
 </div>
 
 <section class="home-recent" aria-label="Recent papers">
-  <h2>Recent papers</h2>
+  <h2><i class="fas fa-scroll" aria-hidden="true"></i> Recent papers</h2>
   <ul class="home-recent-list pub-year-items">
     {% for post in pubs_recent %}
       <li>
