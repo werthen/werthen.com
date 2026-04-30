@@ -2,6 +2,7 @@
 title: "Trustworthy and Reliable (Deep) Machine Learning for Healthcare"
 collection: talks
 type: "Talk"
+talk_type: "Invited"
 permalink: /talks/2025-06-27-talk-ibec-trustworthy-ml
 venue: "IBEC, Barcelona"
 date: 2025-06-27

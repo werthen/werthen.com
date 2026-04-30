@@ -3,9 +3,11 @@ title: "Deep Learning-Based Event Counting for Apnea-Hypopnea Index Estimation u
 collection: publications
 permalink: /publication/2024-11-14-Deep-Learning-Based-Event-Counting-for-Apnea-Hypopnea-Index-Estimation-using-Recursive-Spiking-Neural-Networks
 category: journal
+healthcare: true
 date: 2024-11-14
 venue: 'IEEE Transactions on Biomedical Engineering'
-citation: ' Lorin Werthen-Brabants,  Yolanda Castillo-Escario,  Willemijn Groenendaal,  Raimon Jané,  Tom Dhaene,  Dirk Deschrijver, &quot;Deep Learning-Based Event Counting for Apnea-Hypopnea Index Estimation using Recursive Spiking Neural Networks.&quot; IEEE Transactions on Biomedical Engineering, 2024.'
+authors: 'Lorin Werthen-Brabants, Yolanda Castillo-Escario, Willemijn Groenendaal, Raimon Jané, Tom Dhaene, Dirk Deschrijver'
+citation: '&quot;Deep Learning-Based Event Counting for Apnea-Hypopnea Index Estimation using Recursive Spiking Neural Networks.&quot; IEEE Transactions on Biomedical Engineering, 2024.'
 tldr: "Recursive spiking neural networks estimate apnea-hypopnea event counts for sleep-assessment applications."
 ---
 

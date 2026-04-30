@@ -1,0 +1,96 @@
+{% if site.url %}
+  {% assign base_path = site.url | append: site.baseurl %}
+{% else %}
+  {% assign base_path = '' %}
+{% endif %}
+{% if page.url == '/publications/' or page.collection == 'publications' %}
+  {% assign active_nav = 'publications' %}
+{% elsif page.url == '/talks/' or page.collection == 'talks' %}
+  {% assign active_nav = 'talks' %}
+{% elsif page.url == '/cv/' %}
+  {% assign active_nav = 'cv' %}
+{% endif %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} — {{ site.title }}</title>
+  {% include seo.html %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ base_path }}/assets/css/home.css">
+  <link rel="stylesheet" href="{{ base_path }}/assets/css/inner.css">
+  <link rel="stylesheet" href="{{ base_path }}/assets/css/academicons.css">
+  <link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-32x32.png?v=M44lzPylqQ" sizes="32x32">
+  <link rel="shortcut icon" href="{{ base_path }}/images/favicon.ico?v=M44lzPylqQ">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}/images/apple-touch-icon-180x180.png?v=M44lzPylqQ">
+  <meta name="theme-color" content="#F7F3EE">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="{{ base_path }}/" class="nav-logo">LWB</a>
+  <ul class="nav-links">
+    <li><a href="{{ base_path }}/">Home</a></li>
+    <li><a href="{{ base_path }}/publications/" {% if active_nav == 'publications' %}class="nav-active"{% endif %}>Publications</a></li>
+    <li><a href="{{ base_path }}/talks/" {% if active_nav == 'talks' %}class="nav-active"{% endif %}>Talks</a></li>
+    <li><a href="{{ base_path }}/cv/" {% if active_nav == 'cv' %}class="nav-active"{% endif %}>CV</a></li>
+  </ul>
+</nav>
+
+<!-- INNER PAGE HEADER -->
+<div class="inner-page">
+  <header class="inner-page-header">
+    <div class="container">
+      {% if page.section_label %}
+      <div class="section-label">{{ page.section_label }}</div>
+      {% elsif page.collection %}
+      <div class="section-label">{{ page.collection | capitalize }}</div>
+      {% endif %}
+      <h1 class="inner-page-title">{{ page.title }}</h1>
+      <div class="inner-page-divider"></div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="inner-page-content">
+    <div class="container">
+      {{ content }}
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-name">{{ site.author.name }} · Ghent University</div>
+      <ul class="footer-links">
+        {% if site.author.googlescholar %}
+        <li><a href="{{ site.author.googlescholar }}" target="_blank" rel="noopener">Google Scholar</a></li>
+        {% endif %}
+        {% if site.author.orcid %}
+        <li><a href="{{ site.author.orcid }}" target="_blank" rel="noopener">ORCID</a></li>
+        {% endif %}
+        {% if site.author.email %}
+        <li><a href="mailto:{{ site.author.email }}">Email</a></li>
+        {% endif %}
+        <li><a href="{{ base_path }}/cv/">CV</a></li>
+      </ul>
+      <div class="footer-copy">&copy; {{ site.time | date: '%Y' }} Lorin Werthen-Brabants</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+</script>
+
+</body>
+</html>

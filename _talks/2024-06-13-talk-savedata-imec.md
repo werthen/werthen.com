@@ -2,6 +2,7 @@
 title: "Trustworthy ML for Healthcare: Challenges and Developments"
 collection: talks
 type: "Talk"
+talk_type: "Invited"
 permalink: /talks/2024-06-13-talk-savedata-imec
 venue: "Winkelhaak, Antwerp"
 date: 2024-06-13

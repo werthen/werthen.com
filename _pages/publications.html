@@ -1,6 +1,7 @@
 ---
 layout: archive
 title: "Publications"
+section_label: "Selected Publications"
 permalink: /publications/
 author_profile: true
 ---
@@ -68,9 +69,12 @@ author_profile: true
           <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
         </h3>
         <p class="pub-item-meta">
-          <span class="pub-type">{{ post.category | default: "other" }}</span>
+          <span class="pub-type"></span>
           {% if post.venue %}<span class="pub-dot">•</span><span class="pub-venue">{{ post.venue }}</span>{% endif %}
         </p>
+        {% if post.authors %}
+        <p class="pub-item-authors">{{ post.authors | replace: 'Werthen-Brabants, L.', '<strong>Werthen-Brabants, L.</strong>' | replace: 'Lorin Werthen-Brabants', '<strong>Lorin Werthen-Brabants</strong>' }}</p>
+        {% endif %}
       </header>
       {% if post.tldr %}
         <p class="pub-item-tldr">{{ post.tldr }}</p>

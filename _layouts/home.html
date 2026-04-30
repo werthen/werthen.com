@@ -1,0 +1,677 @@
+{% if site.url %} {% assign base_path = site.url | append: site.baseurl %} {%
+else %} {% assign base_path = '' %} {% endif %} {% assign pubs_sorted =
+site.publications | sort: "date" | reverse %} {% assign featured_pubs =
+site.publications | where: "featured", true | reverse %} {% assign talks_sorted
+= site.talks | sort: "date" | reverse %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {{ page.title | default: site.title }} — Trustworthy ML in Healthcare
+    </title>
+    {% include seo.html %}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ base_path }}/assets/css/home.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ base_path }}/images/favicon-32x32.png?v=M44lzPylqQ"
+      sizes="32x32"
+    />
+    <link
+      rel="shortcut icon"
+      href="{{ base_path }}/images/favicon.ico?v=M44lzPylqQ"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{{ base_path }}/images/apple-touch-icon-180x180.png?v=M44lzPylqQ"
+    />
+    <meta name="theme-color" content="#F7F3EE" />
+  </head>
+  <body>
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-left">
+        <div class="hero-eyebrow">{{ site.author.bio }}</div>
+        <h1 class="hero-name">Dr. Lorin<br />Werthen-Brabants</h1>
+        <div class="hero-divider"></div>
+        <p class="hero-bio">
+          I build machine learning systems that are not only accurate, but
+          interpretable, calibrated, and safe; making AI a trusted partner in
+          clinical decision-making.
+        </p>
+        <div class="hero-keywords">
+          <span class="hero-kw">Trustworthy ML</span>
+          <span class="hero-kw">Uncertainty Quantification</span>
+          <span class="hero-kw">Healthcare AI</span>
+          <span class="hero-kw">Explainability</span>
+          <span class="hero-kw">Medical Signals</span>
+        </div>
+        <div class="hero-social">
+          {% if site.author.googlescholar %}
+          <a
+            href="{{ site.author.googlescholar }}"
+            target="_blank"
+            rel="noopener"
+            >Scholar</a
+          >
+          {% endif %} {% if site.author.orcid %}
+          <span class="hero-social-sep">·</span>
+          <a href="{{ site.author.orcid }}" target="_blank" rel="noopener"
+            >ORCID</a
+          >
+          {% endif %} {% if site.author.github %}
+          <span class="hero-social-sep">·</span>
+          <a
+            href="https://github.com/{{ site.author.github }}"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+          {% endif %} {% if site.author.email %}
+          <span class="hero-social-sep">·</span>
+          <a href="mailto:{{ site.author.email }}">Email</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-pubs-label">Featured Publications</div>
+        {% for post in featured_pubs limit:3 %}
+        <div class="hero-pub-item">
+          <div class="hero-pub-title">{{ post.title }}</div>
+          <div class="hero-pub-venue">
+            {{ post.venue }}, {{ post.date | date: "%Y" }}
+          </div>
+          <div class="hero-pub-meta">
+            {{ post.authors | truncate: 60 | replace: 'Lorin Werthen-Brabants',
+            '<strong>L Werthen-Brabants</strong>' }}
+          </div>
+        </div>
+        {% endfor %}
+        <a href="{{ base_path }}/publications/" class="hero-pubs-more"
+          >All publications →</a
+        >
+      </div>
+      <a href="#about" class="hero-scroll-hint">
+        <span>Scroll</span>
+        <svg width="18" height="28" viewBox="0 0 18 28" fill="none">
+          <rect
+            x="1"
+            y="1"
+            width="16"
+            height="26"
+            rx="8"
+            stroke="currentColor"
+            stroke-width="1.2"
+            opacity="0.4"
+          />
+          <circle cx="9" cy="8" r="2" fill="currentColor" opacity="0.5">
+            <animate
+              attributeName="cy"
+              values="8;16;8"
+              dur="2.2s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="opacity"
+              values="0.5;0.1;0.5"
+              dur="2.2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </svg>
+      </a>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-photo-wrap">
+            <img
+              class="about-photo"
+              src="{{ base_path }}/images/{{ site.author.avatar }}"
+              alt="{{ site.author.name }}"
+            />
+            <div class="about-photo-frame"></div>
+            <div class="about-badge">Ghent University</div>
+          </div>
+          <div class="about-text">
+            <div class="section-label">About</div>
+            <h2 class="section-title" style="margin-bottom: 24px">
+              Machine Learning<br />Researcher in Health
+            </h2>
+            <div class="divider"></div>
+            <p>
+              I am a Postdoctoral Fellow at Ghent University working at the
+              intersection of machine learning, trustworthiness, and healthcare.
+              My research focuses on building models that are not only accurate
+              but interpretable, reliable, and safe for clinical deployment.
+            </p>
+            <p>
+              I develop methods for uncertainty quantification, explainability,
+              and robustness in deep learning systems applied to medical
+              signals, wearable sensor data, and clinical outcome prediction
+              with the goal of making AI a trusted partner in healthcare
+              decision-making.
+            </p>
+            <p>
+              I earned my PhD in Computer Science from Ghent University (2023),
+              where my dissertation centred on uncertainty quantification and
+              robust deep learning for time-series problems.
+            </p>
+            <div class="about-interests">
+              <span class="tag accent">Trustworthy ML</span>
+              <span class="tag accent">Uncertainty Quantification</span>
+              <span class="tag accent">Explainability</span>
+              <span class="tag">Radar Sensing</span>
+              <span class="tag">Activity Recognition</span>
+              <span class="tag">Clinical AI</span>
+              <span class="tag">Deep Learning</span>
+              <span class="tag">Multiple Sclerosis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research">
+      <div class="container">
+        <div class="section-label">Research Areas</div>
+        <h2 class="section-title">What I Work On</h2>
+        <div class="research-grid">
+          <div class="research-card">
+            <svg
+              class="research-icon"
+              viewBox="0 0 40 40"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <circle cx="20" cy="20" r="8" />
+              <path d="M20 4v4M20 32v4M4 20h4M32 20h4" />
+              <circle
+                cx="20"
+                cy="20"
+                r="14"
+                stroke-dasharray="3 3"
+                opacity="0.4"
+              />
+            </svg>
+            <h3>Uncertainty Quantification</h3>
+            <p>
+              Developing methods that allow ML models to express calibrated
+              confidence — making it possible to know when to trust a prediction
+              and when to defer to a clinician.
+            </p>
+          </div>
+          <div class="research-card">
+            <svg
+              class="research-icon"
+              viewBox="0 0 40 40"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path d="M4 28 L10 18 L16 22 L22 10 L28 16 L34 8" />
+              <path
+                d="M4 34 L10 28 L16 30 L22 24 L28 28 L34 22"
+                opacity="0.3"
+              />
+              <rect
+                x="4"
+                y="34"
+                width="32"
+                height="2"
+                rx="1"
+                fill="currentColor"
+                stroke="none"
+              />
+            </svg>
+            <h3>Medical Signal Analysis</h3>
+            <p>
+              Applying deep learning to radar sensors, wearables, and
+              physiological signals for patient activity recognition,
+              monitoring, and real-time classification.
+            </p>
+          </div>
+          <div class="research-card">
+            <svg
+              class="research-icon"
+              viewBox="0 0 40 40"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <circle cx="8" cy="20" r="3" />
+              <circle cx="20" cy="8" r="3" />
+              <circle cx="20" cy="32" r="3" />
+              <circle cx="32" cy="20" r="3" />
+              <path d="M11 20h6M23 20h6M20 11v6M20 23v6" opacity="0.5" />
+              <path
+                d="M20 14 L11 20 L20 26 L29 20 Z"
+                opacity="0.15"
+                fill="currentColor"
+                stroke="none"
+              />
+            </svg>
+            <h3>Explainable AI in Healthcare</h3>
+            <p>
+              Building model transparency tools that help clinicians understand,
+              verify, and appropriately trust or question AI recommendations in
+              clinical workflows.
+            </p>
+          </div>
+          <div class="research-card">
+            <svg
+              class="research-icon"
+              viewBox="0 0 40 40"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path d="M8 28 Q14 12 20 20 Q26 28 32 8" />
+              <circle
+                cx="20"
+                cy="20"
+                r="2.5"
+                fill="currentColor"
+                stroke="none"
+              />
+              <path d="M14 28 Q17 22 20 20 Q23 18 26 12" opacity="0.3" />
+            </svg>
+            <h3>Clinical Outcome Prediction</h3>
+            <p>
+              Predicting disease progression (e.g. multiple sclerosis
+              disability) from longitudinal clinical data, with rigorous
+              validation across international multi-center cohorts.
+            </p>
+          </div>
+          <div class="research-card">
+            <svg
+              class="research-icon"
+              viewBox="0 0 40 40"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <rect x="6" y="14" width="12" height="16" rx="2" />
+              <rect x="22" y="10" width="12" height="20" rx="2" />
+              <path d="M18 22h4" stroke-dasharray="2 2" />
+            </svg>
+            <h3>Robust &amp; Fair ML</h3>
+            <p>
+              Investigating distribution shift, fairness across patient
+              subgroups, and robustness to noise — essential properties for
+              real-world clinical deployment of AI systems.
+            </p>
+          </div>
+          <div class="research-card">
+            <svg
+              class="research-icon"
+              viewBox="0 0 40 40"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path d="M20 6 L34 14 L34 26 L20 34 L6 26 L6 14 Z" />
+              <path d="M20 6 L20 34M6 14 L34 26M34 14 L6 26" opacity="0.25" />
+              <circle cx="20" cy="20" r="3" fill="currentColor" stroke="none" />
+            </svg>
+            <h3>Real-Time Deep Learning</h3>
+            <p>
+              Designing efficient neural architectures (e.g. Split BiRNN)
+              capable of low-latency inference on streaming sensor data for
+              real-time clinical monitoring applications.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <div class="container">
+        <div class="section-label">Publications</div>
+        <h2 class="section-title">Latest Work</h2>
+        <div class="pub-list" id="pub-list">
+          {% assign latest_pubs = site.publications | sort: "date" | reverse %}
+          {% for post in latest_pubs limit:5 %} {% assign venue_clean =
+          post.venue | remove_first: 'the proceedings of ' | remove_first: 'The
+          proceedings of ' %}
+          <div class="pub-item" style="display: grid">
+            <div class="pub-year">{{ post.date | date: "%Y" }}</div>
+            <div>
+              <div class="pub-title">
+                {% if post.paperurl %}<a
+                  href="{{ post.paperurl }}"
+                  target="_blank"
+                  rel="noopener"
+                  style="color: inherit; text-decoration: none"
+                  >{{ post.title }}</a
+                >{% else %}{{ post.title }}{% endif %}
+              </div>
+              <div class="pub-venue">{{ venue_clean }}</div>
+            </div>
+            <div class="pub-meta">
+              {% if post.paperurl %}
+              <a
+                href="{{ post.paperurl }}"
+                class="pub-link"
+                target="_blank"
+                rel="noopener"
+                >Paper ↗</a
+              >
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div style="margin-top: 40px">
+          <a href="{{ base_path }}/publications/" class="btn btn-outline"
+            >All publications →</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- TALKS -->
+    <section id="talks">
+      <div class="container">
+        <div class="section-label">Talks &amp; Presentations</div>
+        <h2 class="section-title">Speaking</h2>
+        <div class="talks-list">
+          {% for talk in talks_sorted %}
+          <div class="talk-item">
+            <div class="talk-date">{{ talk.date | date: "%b %Y" }}</div>
+            <div>
+              <div class="talk-title">
+                {{ talk.title }} {% if talk.talk_type %}
+                <span
+                  class="talk-badge badge-{% if talk.talk_type == 'Invited' %}invited{% else %}conference{% endif %}"
+                  >{{ talk.talk_type }}</span
+                >
+                {% endif %}
+              </div>
+              <div class="talk-event">
+                {{ talk.venue }}{% if talk.location %} · {{ talk.location }}{%
+                endif %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    {% if site.blog.enabled %}
+    <section id="blog">
+      <div class="container">
+        <div class="section-label">Blog</div>
+        <h2 class="section-title">Writing &amp; Thoughts</h2>
+        <div class="blog-grid">
+          <a href="#" class="blog-card">
+            <div class="blog-thumb">
+              <canvas
+                class="blog-thumb-canvas"
+                data-type="uncertainty"
+              ></canvas>
+            </div>
+            <div class="blog-body">
+              <div class="blog-tag">Trustworthy AI</div>
+              <div class="blog-title">
+                Why Calibrated Uncertainty Matters More Than Accuracy in
+                Medicine
+              </div>
+              <div class="blog-excerpt">
+                A model that says "I'm 95% sure" when it's only right 60% of the
+                time is dangerous. Here's why calibration is the metric
+                clinicians actually need.
+              </div>
+              <div class="blog-date">Coming soon</div>
+            </div>
+          </a>
+          <a href="#" class="blog-card">
+            <div class="blog-thumb">
+              <canvas class="blog-thumb-canvas" data-type="radar"></canvas>
+            </div>
+            <div class="blog-body">
+              <div class="blog-tag">Radar ML</div>
+              <div class="blog-title">
+                Seeing Without Looking: Radar-Based Patient Monitoring in
+                Hospital Rooms
+              </div>
+              <div class="blog-excerpt">
+                Radar sensors can detect patient falls, breathing patterns, and
+                movement — all without cameras. Here's how deep learning makes
+                sense of the data.
+              </div>
+              <div class="blog-date">Coming soon</div>
+            </div>
+          </a>
+          <a href="#" class="blog-card">
+            <div class="blog-thumb">
+              <canvas class="blog-thumb-canvas" data-type="ms"></canvas>
+            </div>
+            <div class="blog-body">
+              <div class="blog-tag">Clinical AI</div>
+              <div class="blog-title">
+                Predicting MS Progression: What the Model Learns and What It
+                Doesn't
+              </div>
+              <div class="blog-excerpt">
+                Our multi-center MS study highlighted how international data
+                diversity changes what machine learning can and cannot reliably
+                predict.
+              </div>
+              <div class="blog-date">Coming soon</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- CV -->
+    <section id="cv">
+      <div class="container">
+        <div class="cv-inner">
+          <div class="cv-text">
+            <div class="section-label">Curriculum Vitae</div>
+            <h2>View my full CV</h2>
+            <p>
+              Education, positions, publications, grants, and teaching — all in
+              one place.
+            </p>
+          </div>
+          <a href="{{ base_path }}/cv/" class="cv-btn">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path
+                d="M9 2v10M5 8l4 4 4-4M3 14h12"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            View Full CV
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-name">
+            {{ site.author.name }} · Ghent University
+          </div>
+          <ul class="footer-links">
+            {% if site.author.googlescholar %}
+            <li>
+              <a
+                href="{{ site.author.googlescholar }}"
+                target="_blank"
+                rel="noopener"
+                >Google Scholar</a
+              >
+            </li>
+            {% endif %} {% if site.author.orcid %}
+            <li>
+              <a href="{{ site.author.orcid }}" target="_blank" rel="noopener"
+                >ORCID</a
+              >
+            </li>
+            {% endif %} {% if site.author.email %}
+            <li><a href="mailto:{{ site.author.email }}">Email</a></li>
+            {% endif %}
+            <li><a href="{{ base_path }}/cv/">CV</a></li>
+          </ul>
+          <div class="footer-copy">
+            &copy; {{ site.time | date: '%Y' }} Lorin Werthen-Brabants
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ── BLOG THUMBNAIL CANVASES ──
+      document.querySelectorAll(".blog-thumb-canvas").forEach((c) => {
+        const ctx = c.getContext("2d");
+        c.width = c.offsetWidth || 300;
+        c.height = c.offsetHeight || 160;
+        const W = c.width,
+          H = c.height;
+        const type = c.dataset.type;
+
+        if (type === "uncertainty") {
+          ctx.fillStyle = "#EDE7DC";
+          ctx.fillRect(0, 0, W, H);
+          const pts = 80;
+          for (let band = 3; band >= 0; band--) {
+            ctx.beginPath();
+            for (let i = 0; i <= pts; i++) {
+              const x = (i / pts) * W;
+              const y = H / 2 + Math.sin((i / pts) * Math.PI * 3) * 20;
+              const spread =
+                (band + 1) *
+                10 *
+                (0.5 + Math.abs(Math.sin((i / pts) * Math.PI)));
+              if (i === 0) ctx.moveTo(x, y - spread);
+              else ctx.lineTo(x, y - spread);
+            }
+            for (let i = pts; i >= 0; i--) {
+              const x = (i / pts) * W;
+              const y = H / 2 + Math.sin((i / pts) * Math.PI * 3) * 20;
+              const spread =
+                (band + 1) *
+                10 *
+                (0.5 + Math.abs(Math.sin((i / pts) * Math.PI)));
+              ctx.lineTo(x, y + spread);
+            }
+            ctx.closePath();
+            ctx.fillStyle = `rgba(42,107,124,${0.07 * (4 - band)})`;
+            ctx.fill();
+          }
+          ctx.beginPath();
+          for (let i = 0; i <= pts; i++) {
+            const x = (i / pts) * W;
+            const y = H / 2 + Math.sin((i / pts) * Math.PI * 3) * 20;
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.strokeStyle = "rgba(42,107,124,0.7)";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+
+        if (type === "radar") {
+          ctx.fillStyle = "#EDE7DC";
+          ctx.fillRect(0, 0, W, H);
+          for (let r = 1; r <= 4; r++) {
+            ctx.beginPath();
+            ctx.arc(W / 2, H / 2, r * 25, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(42,107,124,${0.12 * r})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+          for (let a = 0; a < 8; a++) {
+            const angle = (a / 8) * Math.PI * 2;
+            ctx.beginPath();
+            ctx.moveTo(W / 2, H / 2);
+            ctx.lineTo(
+              W / 2 + Math.cos(angle) * 100,
+              H / 2 + Math.sin(angle) * 100,
+            );
+            ctx.strokeStyle = "rgba(42,107,124,0.1)";
+            ctx.stroke();
+          }
+          ctx.beginPath();
+          const angles = [0, 1, 2, 3, 4, 5, 6, 7, 0];
+          const dists = [60, 40, 55, 35, 65, 45, 50, 70, 60];
+          angles.forEach((ai, i) => {
+            const angle = (ai / 8) * Math.PI * 2;
+            const r = dists[i];
+            const x = W / 2 + Math.cos(angle) * r;
+            const y = H / 2 + Math.sin(angle) * r;
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          });
+          ctx.closePath();
+          ctx.fillStyle = "rgba(42,107,124,0.15)";
+          ctx.fill();
+          ctx.strokeStyle = "rgba(42,107,124,0.5)";
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+
+        if (type === "ms") {
+          ctx.fillStyle = "#EDE7DC";
+          ctx.fillRect(0, 0, W, H);
+          const series = [
+            [20, 22, 25, 24, 28, 32, 38, 45],
+            [18, 20, 19, 22, 24, 26, 25, 28],
+          ];
+          const colors = ["rgba(196,135,74,0.7)", "rgba(42,107,124,0.7)"];
+          series.forEach((s, si) => {
+            ctx.beginPath();
+            s.forEach((v, i) => {
+              const x = 24 + (i / (s.length - 1)) * (W - 48);
+              const y = H - 24 - (v / 50) * (H - 48);
+              if (i === 0) ctx.moveTo(x, y);
+              else ctx.lineTo(x, y);
+            });
+            ctx.strokeStyle = colors[si];
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            s.forEach((v, i) => {
+              const x = 24 + (i / (s.length - 1)) * (W - 48);
+              const y = H - 24 - (v / 50) * (H - 48);
+              ctx.beginPath();
+              ctx.arc(x, y, 3.5, 0, Math.PI * 2);
+              ctx.fillStyle = colors[si];
+              ctx.fill();
+            });
+          });
+          ctx.beginPath();
+          ctx.moveTo(20, H - 20);
+          ctx.lineTo(W - 16, H - 20);
+          ctx.strokeStyle = "rgba(28,24,20,0.2)";
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      });
+    </script>
+  </body>
+</html>
