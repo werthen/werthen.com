@@ -123,6 +123,13 @@ body::before {
   color: var(--teal);
   margin-bottom: 3px;
 }
+.hero-pub-tldr {
+  font-size: 0.78rem;
+  color: var(--ink-mid);
+  line-height: 1.55;
+  margin-bottom: 6px;
+  font-style: italic;
+}
 .hero-pub-meta {
   font-size: 0.75rem;
   color: var(--ink-light);
@@ -450,6 +457,13 @@ section { padding: 96px 0; }
   color: var(--teal);
   margin-bottom: 4px;
   font-weight: 500;
+}
+.pub-tldr {
+  font-size: 0.83rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  margin-top: 6px;
+  font-style: italic;
 }
 .pub-authors {
   font-size: 0.82rem;

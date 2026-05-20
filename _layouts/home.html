@@ -41,7 +41,7 @@ site.publications | where: "featured", true | reverse %} {% assign talks_sorted
     <section id="hero">
       <div class="hero-left">
         <div class="hero-eyebrow">{{ site.author.bio }}</div>
-        <h1 class="hero-name">Dr. Lorin<br />Werthen-Brabants</h1>
+        <h1 class="hero-name">Lorin<br />Werthen-Brabants</h1>
         <div class="hero-divider"></div>
         <p class="hero-bio">
           I build machine learning systems that are not only accurate, but
@@ -86,10 +86,15 @@ site.publications | where: "featured", true | reverse %} {% assign talks_sorted
         <div class="hero-pubs-label">Featured Publications</div>
         {% for post in featured_pubs limit:3 %}
         <div class="hero-pub-item">
-          <div class="hero-pub-title">{{ post.title }}</div>
+          <div class="hero-pub-title">
+            <a href="{{ base_path }}{{ post.url }}" style="color: inherit; text-decoration: none;">{{ post.title }}</a>
+          </div>
           <div class="hero-pub-venue">
             {{ post.venue }}, {{ post.date | date: "%Y" }}
           </div>
+          {% if post.tldr %}
+          <div class="hero-pub-tldr">{{ post.tldr }}</div>
+          {% endif %}
           <div class="hero-pub-meta">
             {{ post.authors | truncate: 60 | replace: 'Lorin Werthen-Brabants',
             '<strong>L Werthen-Brabants</strong>' }}
@@ -358,9 +363,14 @@ site.publications | where: "featured", true | reverse %} {% assign talks_sorted
                   rel="noopener"
                   style="color: inherit; text-decoration: none"
                   >{{ post.title }}</a
-                >{% else %}{{ post.title }}{% endif %}
+                >{% else %}<a
+                  href="{{ base_path }}{{ post.url }}"
+                  style="color: inherit; text-decoration: none"
+                  >{{ post.title }}</a
+                >{% endif %}
               </div>
               <div class="pub-venue">{{ venue_clean }}</div>
+              {% if post.tldr %}<div class="pub-tldr">{{ post.tldr }}</div>{% endif %}
             </div>
             <div class="pub-meta">
               {% if post.paperurl %}
