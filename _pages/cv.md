@@ -28,10 +28,15 @@ redirect_from:
       <a href="{{ site.author.googlescholar }}">Google Scholar</a>
       <a href="{{ site.author.orcid }}">ORCID</a>
       <a href="{{ base_path }}/publications/">Publications</a>
+      <a href="{{ base_path }}/files/lorin-werthen-brabants-cv.pdf"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Download PDF</a>
     </nav>
   </header>
 
   <div class="cv-grid">
+    <section class="cv-section cv-section--summary">
+      <p class="cv-tagline">Postdoctoral researcher at IDLab &ndash; Ghent University working on trustworthy machine learning and uncertainty quantification, with applications spanning healthcare diagnostics, time-series analysis, and control.</p>
+    </section>
+
     <section class="cv-section cv-section--publications">
       <h2><i class="fa-solid fa-book-open" aria-hidden="true"></i> Selected Publications</h2>
       <ol class="cv-publications">
@@ -104,11 +109,18 @@ redirect_from:
           </div>
         </article>
         <article class="cv-timeline-item">
-          <p class="cv-date">2018</p>
+          <p class="cv-date">2016-2018</p>
           <div class="cv-item-body">
             <h3>MSc in Computer Science</h3>
             <p><em>Ghent University</em></p>
             <p>Thesis: Focused on machine learning methods for time-series data.</p>
+          </div>
+        </article>
+        <article class="cv-timeline-item">
+          <p class="cv-date">2013-2016</p>
+          <div class="cv-item-body">
+            <h3>BSc in Informatics</h3>
+            <p><em>Ghent University</em></p>
           </div>
         </article>
       </div>
@@ -118,12 +130,26 @@ redirect_from:
       <h2><i class="fa-solid fa-medal" aria-hidden="true"></i> Grants and Awards</h2>
       <div class="cv-band">
         <article class="cv-row">
-          <h3 class="cv-row-title">FWO PhD Fellowship</h3>
-          <p class="cv-row-text">Funded by the Research Foundation Flanders (FWO) for PhD research on Trustworthy ML and uncertainty quantification in deep learning (2025-2028).</p>
+          <h3 class="cv-row-title">FWO Postdoctoral Fellowship</h3>
+          <p class="cv-row-text">Funded by the Research Foundation Flanders (FWO) for postdoctoral research on Trustworthy ML and uncertainty quantification in deep learning (2025-2028).</p>
         </article>
         <article class="cv-row">
           <h3 class="cv-row-title">Academic Representation</h3>
           <p class="cv-row-text">Selected as a PhD representative for the Flanders AI Research Program (2023).</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cv-section cv-section--talks">
+      <h2><i class="fa-solid fa-person-chalkboard" aria-hidden="true"></i> Invited Talks</h2>
+      <div class="cv-band">
+        <article class="cv-row">
+          <h3 class="cv-row-title">Trustworthy and Reliable (Deep) Machine Learning for Healthcare</h3>
+          <p class="cv-row-text">IBEC, Barcelona, Spain (2025)</p>
+        </article>
+        <article class="cv-row">
+          <h3 class="cv-row-title">Trustworthy ML for Healthcare: Challenges and Developments</h3>
+          <p class="cv-row-text">Winkelhaak, Antwerp, Belgium (2024)</p>
         </article>
       </div>
     </section>
@@ -149,7 +175,7 @@ redirect_from:
       <div class="cv-band">
         <article class="cv-row">
           <h3 class="cv-row-title">Peer Review Service</h3>
-          <p class="cv-row-text">Regular reviewer for leading journals including IEEE and Nature.</p>
+          <p class="cv-row-text">Regular reviewer for <em>Scientific Reports</em> and <em>IEEE Transactions on Biomedical Engineering</em>.</p>
         </article>
         <article class="cv-row">
           <h3 class="cv-row-title">Science Communication</h3>
@@ -164,7 +190,6 @@ redirect_from:
         <article class="cv-row">
           <h3 class="cv-row-title">Visiting Researcher</h3>
           <p class="cv-row-text"><em>University of Sydney, Australia (2022)</em></p>
-          <p class="cv-row-text">Facilitated collaboration and guided local researchers in time series modeling.</p>
         </article>
       </div>
     </section>
@@ -205,20 +230,6 @@ redirect_from:
             <span class="cv-pill">French (B2)</span>
             <span class="cv-pill">Spanish (A2)</span>
           </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="cv-section cv-section--references">
-      <h2><i class="fa-solid fa-user-check" aria-hidden="true"></i> References</h2>
-      <div class="cv-band">
-        <article class="cv-row">
-          <h3 class="cv-row-title">Prof. Dirk Deschrijver</h3>
-          <p class="cv-row-text">IDLab, imec, Ghent University</p>
-        </article>
-        <article class="cv-row">
-          <h3 class="cv-row-title">Additional References</h3>
-          <p class="cv-row-text">Available upon request.</p>
         </article>
       </div>
     </section>
