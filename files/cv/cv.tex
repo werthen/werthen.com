@@ -1,0 +1,252 @@
+\documentclass[10.5pt,a4paper]{article}
+
+% ---------- Packages ----------
+\usepackage[margin=2cm,top=1.7cm,bottom=1.7cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{parskip}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ragged2e}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+% ---------- Colors ----------
+\definecolor{accent}{HTML}{2E5266}
+\definecolor{darkgray}{HTML}{333333}
+\definecolor{midgray}{HTML}{666666}
+\definecolor{rulegray}{HTML}{CCCCCC}
+
+\color{darkgray}
+
+% ---------- Section formatting ----------
+\titleformat{\section}
+  {\large\bfseries\color{accent}}
+  {}{0em}{}
+  [\vspace{0.4em}{\color{rulegray}\hrule height 0.8pt}\vspace{0.5em}]
+\titlespacing{\section}{0pt}{1.8em}{0.7em}
+
+% Sections wrapped in \cvsection keep their heading and body together on
+% one page (the block is pushed to the next page as a whole if it doesn't
+% fit). The final "Full List of Publications" section is left unwrapped
+% so it can flow across pages.
+\newenvironment{cvsection}[1]{%
+  \vspace{1.8em}%
+  \begin{minipage}[t]{\textwidth}
+  \vspace{0pt}%
+  \titlespacing{\section}{0pt}{0pt}{0.7em}%
+  \section{#1}%
+}{%
+  \end{minipage}%
+  \titlespacing{\section}{0pt}{1.8em}{0.7em}%
+}
+
+\titleformat{\subsection}
+  {\bfseries\color{darkgray}}
+  {}{0em}{}
+\titlespacing{\subsection}{0pt}{1em}{0.3em}
+
+% ---------- Misc ----------
+\setlist[itemize]{leftmargin=1.1em, itemsep=1pt, topsep=2pt, parsep=0pt}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% Helper for timeline-style entries
+\newcommand{\cvitem}[4]{%
+  % #1 = dates, #2 = title, #3 = org, #4 = description
+  \noindent
+  \begin{tabularx}{\textwidth}{@{}p{2.1cm}X@{}}
+    {\small\color{midgray}#1} & {\bfseries #2} \\
+    & {\itshape\small #3} \\[2pt]
+    & {\small #4}
+  \end{tabularx}
+  \vspace{0.9em}
+}
+
+\newcommand{\cvrow}[2]{%
+  {\bfseries #1}\\
+  {\small #2}
+  \vspace{0.8em}
+  \par
+}
+
+% Circular photo helper: #1 = image file, #2 = radius
+\newcommand{\circphoto}[2]{%
+  \begin{tikzpicture}
+    \pgfmathsetlengthmacro{\photodiam}{2*#2}
+    \clip (0,0) circle (#2);
+    \node at (0,0) {\includegraphics[width=\photodiam, height=\photodiam, keepaspectratio]{#1}};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+% ================= HEADER =================
+\noindent
+\begin{minipage}[c]{3.4cm}
+  \circphoto{photo.jpg}{1.7cm}
+\end{minipage}%
+\hspace{1.2cm}%
+\begin{minipage}[c]{\dimexpr\textwidth-4.8cm\relax}
+\raggedright
+  {\Huge\bfseries\color{accent} Lorin Werthen-Brabants}\\[4pt]
+  {\large\color{midgray} FWO Fellow at Ghent University}\\[8pt]
+  {\small
+    \faUniversity\ IDLab -- Ghent University \,\vline\,
+    \faMapMarker*\ Ghent, Belgium \,\vline\,
+    \faEnvelope\ \href{mailto:lorin.werthenbrabants@ugent.be}{lorin.werthenbrabants@ugent.be}
+  }\\[4pt]
+  {\small
+    \faGraduationCap\ \href{https://scholar.google.com/citations?hl=en&user=3KySYVQAAAAJ}{Google Scholar} \,\vline\,
+    \faIdCard\ \href{https://orcid.org/0000-0001-9976-1886}{ORCID 0000-0001-9976-1886} \,\vline\,
+    \faGlobe\ \href{https://www.werthen.com}{werthen.com}
+  }
+\end{minipage}
+
+\vspace{0.5em}
+
+\begin{center}
+\small\itshape Postdoctoral researcher at IDLab -- Ghent University working on trustworthy machine learning and uncertainty quantification, with applications spanning healthcare diagnostics, time-series analysis, and control.
+\end{center}
+
+\vspace{0.3em}
+
+% ================= PROFESSIONAL EXPERIENCE =================
+\begin{cvsection}{Professional Experience}
+
+\cvitem{2025--2028}{Postdoctoral Fellow}{FWO \& IDLab -- imec, Ghent University}{Focus on Trustworthy Machine Learning (TML) and uncertainty quantification in deep learning models, with applications in healthcare diagnostics. Grant number 1264826N.}
+
+\cvitem{2023--2025}{Postdoctoral Researcher}{IDLab -- imec, Ghent University}{Research focused on emerging probabilistic hardware (p-bits), with a focus on Model Predictive Control.}
+
+\cvitem{2019--2023}{PhD Student}{IDLab -- imec, Ghent University}{Dissertation: ``Quantifying Uncertainty and Improving Reliability of Time-Series Based Deep Learning Models.''}
+
+\cvitem{2018--2019}{Machine Learning Engineer}{Robovision}{Developed machine learning pipelines for computer vision applications, transitioning to academia for deeper exploration of research questions.}
+
+\end{cvsection}
+
+% ================= EDUCATION =================
+\begin{cvsection}{Education}
+
+\cvitem{2019--2023}{PhD in Computer Science}{Ghent University}{Dissertation: ``Quantifying Uncertainty and Improving Reliability of Time-Series Based Deep Learning Models.'' Promotors: Prof.\ dr.\ ir.\ Tom Dhaene, Prof.\ dr.\ mult.\ Dirk Deschrijver.}
+
+\cvitem{2016--2018}{MSc in Computer Science}{Ghent University}{Thesis focused on machine learning methods for time-series data.}
+
+\cvitem{2013--2016}{BSc in Informatics}{Ghent University}{}
+
+\end{cvsection}
+
+% ================= SELECTED PUBLICATIONS =================
+\begin{cvsection}{Selected Publications}
+
+\small
+\begin{enumerate}[leftmargin=1.4em, itemsep=3pt, topsep=2pt, label={[\arabic*]}]
+\item \textbf{Werthen-Brabants, L.}, et al. (2024). ``Deep Learning-Based Event Counting for Apnea-Hypopnea Index Estimation using Recursive Spiking Neural Networks.'' \textit{IEEE Transactions on Biomedical Engineering}.
+\item \textbf{Werthen-Brabants, L.}, et al. (2022). ``Split BiRNN for real-time activity recognition using radar and deep learning.'' \textit{Scientific Reports}.
+\item \textbf{Werthen-Brabants, L.}, et al. (2022). ``Uncertainty quantification for appliance recognition in non-intrusive load monitoring using Bayesian deep learning.'' \textit{Energy and Buildings}.
+\item Bhavanasi, G., \textbf{Werthen-Brabants, L.}, et al. (2022). ``Patient activity recognition using radar sensors and machine learning.'' \textit{Neural Computing and Applications}.
+\item Castillo-Escario, Y., \textbf{Werthen-Brabants, L.}, et al. (2022). ``Convolutional neural networks for Apnea detection from smartphone audio signals: effect of window size.'' \textit{IEEE EMBC Conference}.
+\end{enumerate}
+
+\textit{\small Full publication list at \href{https://www.werthen.com/publications/}{werthen.com/publications} and at the end of this document.}
+
+\end{cvsection}
+
+% ================= GRANTS AND AWARDS =================
+\begin{cvsection}{Grants and Awards}
+
+\cvrow{FWO Postdoctoral Fellowship}{Funded by the Research Foundation Flanders (FWO) for postdoctoral research on Trustworthy ML and uncertainty quantification in deep learning (2025--2028).}
+
+\cvrow{Academic Representation}{Selected as a PhD representative for the Flanders AI Research Program (2023).}
+
+\end{cvsection}
+
+% ================= INVITED TALKS =================
+\begin{cvsection}{Invited Talks}
+
+\cvrow{Trustworthy and Reliable (Deep) Machine Learning for Healthcare}{IBEC, Barcelona, Spain (2025)}
+
+\cvrow{Trustworthy ML for Healthcare: Challenges and Developments}{Winkelhaak, Antwerp, Belgium (2024)}
+
+\end{cvsection}
+
+% ================= TEACHING AND SUPERVISION =================
+\begin{cvsection}{Teaching and Supervision}
+
+\cvrow{Teaching Assistant}{Courses on Computer Science, Machine Learning, and Logic at Ghent University (2019--Present).}
+
+\cvrow{Master's Thesis Supervision}{Supervised multiple Master's theses, with students publishing conference papers under guidance:
+\begin{itemize}
+\item Vincent-De Sloover, Louis, et al. ``Tailoring Radar-Based Patient Monitoring Models to Real-Life Needs using Utility Maximization.'' \textit{2022 19th European Radar Conference (EuRAD)}. IEEE, 2022.
+\item Tuytte, Victor, et al. ``Optimized Data Transmission for Radar-Based Edge-Cloud Human Activity Recognition via Quantization.'' \textit{2024 21st European Radar Conference (EuRAD)}. IEEE, 2024.
+\end{itemize}}
+
+\end{cvsection}
+
+% ================= SERVICE AND OUTREACH =================
+\begin{cvsection}{Service and Outreach}
+
+\cvrow{Peer Review Service}{Regular reviewer for \textit{Scientific Reports} and \textit{IEEE Transactions on Biomedical Engineering}.}
+
+\cvrow{Science Communication}{Featured in public AI discussions, including television appearances (e.g., Karrewiet 2019, VRT NWS Laat 2024).}
+
+\end{cvsection}
+
+% ================= MOBILITY =================
+\begin{cvsection}{Mobility and Research Stays}
+
+\cvrow{Visiting Researcher -- University of Sydney, Australia (2022)}{}
+
+\end{cvsection}
+
+% ================= RESEARCH INTERESTS =================
+\begin{cvsection}{Research Interests}
+
+\small Trustworthy Machine Learning (TML) \textperiodcentered\ Uncertainty Quantification in Deep Learning \textperiodcentered\ Event-Based Time Series Analysis \textperiodcentered\ Multimodal Data Integration \textperiodcentered\ Self-Supervised Learning for Healthcare Applications
+
+\end{cvsection}
+
+% ================= SKILLS =================
+\begin{cvsection}{Skills}
+
+\cvrow{Programming Languages}{Python, C, C++, MATLAB}
+
+\cvrow{Deep Learning Frameworks}{TensorFlow, PyTorch}
+
+\cvrow{Data Science}{Time Series Analysis, Uncertainty Quantification, Statistical Modeling, Data Visualization}
+
+\cvrow{Languages}{English (C2) \textbullet\ Dutch (C2, Native) \textbullet\ French (B2) \textbullet\ Spanish (A2)}
+
+\end{cvsection}
+
+% ================= FULL PUBLICATION LIST =================
+\section{Full List of Publications}
+
+\small
+\begin{enumerate}[leftmargin=1.4em, itemsep=4pt, topsep=2pt, label={[\arabic*]}]
+\item Niels Jodts, \textbf{Lorin Werthen-Brabants}, Sofie Aerts, et al. (2026). ``Data-driven hypothesis discovery from disease trajectories in multiple sclerosis.'' \textit{Frontiers in Immunology}.
+\item Sofie Aerts, \textbf{Lorin Werthen-Brabants}, Hamza Khan, et al. (2026). ``Combining Magnetic Resonance Imaging and Evoked Potentials Enhances Machine Learning Prediction of Multiple Sclerosis Disability Worsening.'' \textit{Frontiers in Immunology}.
+\item \textbf{Lorin Werthen-Brabants}, Pieter Simoens (2025). ``Ising Machines for Model Predictive Path Integral-Based Optimal Control.'' \textit{NeurIPS Workshop: 2nd edition of Frontiers in Probabilistic Inference: Learning meets Sampling}.
+\item Hamza Khan, Henry C. Woodruff, Diana L. Giraldo, et al. (2025). ``Leveraging Hand-Crafted Radiomics on Multicenter FLAIR MRI for Predicting Disability Progression in People with Multiple Sclerosis.'' \textit{Frontiers in Neuroscience}.
+\item \textbf{Lorin Werthen-Brabants}, Tom Dhaene, Dirk Deschrijver (2025). ``The Role of Trustworthy and Reliable AI for Multiple Sclerosis.'' \textit{Frontiers in Digital Health}.
+\item \textbf{Lorin Werthen-Brabants}, Yolanda Castillo-Escario, Willemijn Groenendaal, Raimon Jan\'e, Tom Dhaene, Dirk Deschrijver (2024). ``Deep Learning-Based Event Counting for Apnea-Hypopnea Index Estimation using Recursive Spiking Neural Networks.'' \textit{IEEE Transactions on Biomedical Engineering}.
+\item Victor Tuytte, Arash Heidari, \textbf{Lorin Werthen-Brabants}, Tom Dhaene, Ivo Couckuyt (2024). ``Optimized Data Transmission for Radar-Based Edge-Cloud Human Activity Recognition via Quantization.'' \textit{Proceedings of the 2024 21st European Radar Conference (EuRAD)}.
+\item Arash Heidari, \textbf{Lorin Werthen-Brabants}, Tom Dhaene, Ivo Couckuyt (2024). ``Optimizing Memory Footprint for Radar-Based Human Activity Recognition on Resource-Constrained Devices.'' \textit{Proceedings of the 2024 21st European Radar Conference (EuRAD)}.
+\item Arash Heidari, \textbf{Lorin Werthen-Brabants}, Sebastian Rojas Gonzalez, et al. (2024). ``Towards Trustworthy Neural Networks for Certification by Analysis -- Fuel Tank Flammability Reduction System.'' \textit{Proceedings of FrontUQ2024, Workshop on Frontiers of Uncertainty Quantification}.
+\item Edward De Brouwer, Thijs Becker, \textbf{Lorin Werthen-Brabants}, et al. (2024). ``Machine-learning-based prediction of disability progression in multiple sclerosis: An observational, international, multi-center study.'' \textit{PLOS Digital Health}.
+\item Arash Heidari, \textbf{Lorin Werthen-Brabants}, Tom Dhaene, et al. (2024). ``Data-Driven Surrogate Modeling for the Flammability Reduction System.'' \textit{Proceedings of AIAA SCITECH 2024 Forum}.
+\item \textbf{Lorin Werthen-Brabants}, Tom Dhaene, Dirk Deschrijver (2023). ``Reliable assessment of uncertainty for appliance recognition in NILM using conformal prediction.'' \textit{Electronics Letters}.
+\item Geethika Bhavanasi, \textbf{Lorin Werthen-Brabants}, Tom Dhaene, Ivo Couckuyt (2023). ``Open-set patient activity recognition with radar sensors and deep learning.'' \textit{IEEE Geoscience and Remote Sensing Letters}.
+\item Louis Vincent-De Sloover, \textbf{Lorin Werthen-Brabants}, Geethika Bhavanasi, Tom Dhaene, Ivo Couckuyt (2022). ``Tailoring Radar-Based Patient Monitoring Models to Real-Life Needs using Utility Maximization.'' \textit{Proceedings of the 2022 19th European Radar Conference (EuRAD)}.
+\item \textbf{Lorin Werthen-Brabants}, Geethika Bhavanasi, Ivo Couckuyt, Tom Dhaene, Dirk Deschrijver (2022). ``Quantifying Uncertainty in Real Time with Split BiRNN for Radar Human Activity Recognition.'' \textit{Proceedings of the 2022 19th European Radar Conference (EuRAD)}.
+\item Yolanda Castillo-Escario, \textbf{Lorin Werthen-Brabants}, Willemijn Groenendaal, Dirk Deschrijver, Raimon Jane (2022). ``Convolutional Neural Networks for Apnea Detection from Smartphone Audio Signals: Effect of Window Size.'' \textit{Proceedings of IEEE EMBC 2022}.
+\item \textbf{Lorin Werthen-Brabants}, Tom Dhaene, Dirk Deschrijver (2022). ``Uncertainty quantification for appliance recognition in non-intrusive load monitoring using Bayesian deep learning.'' \textit{Energy and Buildings}.
+\item \textbf{Lorin Werthen-Brabants}, Geethika Bhavanasi, Ivo Couckuyt, Tom Dhaene, Dirk Deschrijver (2022). ``Split BiRNN for real-time activity recognition using radar and deep learning.'' \textit{Scientific Reports}.
+\item Geethika Bhavanasi, \textbf{Lorin Werthen-Brabants}, Tom Dhaene, Ivo Couckuyt (2022). ``Patient activity recognition using radar sensors and machine learning.'' \textit{Neural Computing and Applications}.
+\end{enumerate}
+
+\end{document}
