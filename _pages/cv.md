@@ -181,6 +181,14 @@ redirect_from:
           <h3 class="cv-row-title">Science Communication</h3>
           <p class="cv-row-text">Featured in public AI discussions, including television appearances (e.g., Karrewiet 2019, VRT NWS Laat 2024).</p>
         </article>
+        <article class="cv-row">
+          <h3 class="cv-row-title">CodeFever Volunteer</h3>
+          <p class="cv-row-text">Volunteer at CodeFever, an independent education programme teaching programming to children aged 8&ndash;16 (Ghent, 2018&ndash;2019).</p>
+        </article>
+        <article class="cv-row">
+          <h3 class="cv-row-title">Student Representative</h3>
+          <p class="cv-row-text">Represented BSc Informatics students in the Study Programme Committee at Ghent University, including during the 2016 programme reform (2014&ndash;2016).</p>
+        </article>
       </div>
     </section>
 
