@@ -1,0 +1,175 @@
+# Single source of truth for the CV.
+#
+# Both outputs are generated from this file:
+#   - the HTML page  (_pages/cv.md, rendered by Jekyll)
+#   - the PDF        (files/lorin-werthen-brabants-cv.pdf, via `ruby _cv/build.rb`)
+# The PDF's full publication list comes from the _publications/ collection.
+#
+# Text fields accept a small Markdown subset that works in both outputs:
+#   **bold**, *italic*, [text](url), "quotes", and Unicode such as – × ë.
+# After editing, run `ruby _cv/build.rb` and commit the regenerated PDF.
+
+tagline: Postdoctoral researcher at IDLab – Ghent University working on trustworthy machine learning and uncertainty quantification, with applications spanning healthcare diagnostics, time-series analysis, and control.
+
+selected_publications:
+  - '**Werthen-Brabants, L.**, et al. (2024). "Deep Learning-Based Event Counting for Apnea-Hypopnea Index Estimation using Recursive Spiking Neural Networks." *IEEE Transactions on Biomedical Engineering*.'
+  - '**Werthen-Brabants, L.**, et al. (2022). "Split BiRNN for real-time activity recognition using radar and deep learning." *Scientific Reports*.'
+  - '**Werthen-Brabants, L.**, et al. (2022). "Uncertainty quantification for appliance recognition in non-intrusive load monitoring using Bayesian deep learning." *Energy and Buildings*.'
+  - 'Bhavanasi, G., **Werthen-Brabants, L.**, et al. (2022). "Patient activity recognition using radar sensors and machine learning." *Neural Computing and Applications*.'
+  - 'Castillo-Escario, Y., **Werthen-Brabants, L.**, et al. (2022). "Convolutional neural networks for Apnea detection from smartphone audio signals: effect of window size." *IEEE EMBC Conference*.'
+
+experience:
+  - dates: 2025–2028
+    title: Postdoctoral Fellow
+    org: FWO & IDLab – imec, Ghent University
+    lines:
+      - Focus on Trustworthy Machine Learning (TML) and uncertainty quantification in deep learning models, with applications in healthcare diagnostics, in particular sleep apnea. Grant number 1264826N.
+  - dates: 2023–2025
+    title: Postdoctoral Researcher
+    org: IDLab – imec, Ghent University
+    lines:
+      - Research focused on emerging probabilistic hardware (p-bits), with a focus on Model Predictive Control.
+  - dates: 2019–2023
+    title: PhD Student
+    org: IDLab – imec, Ghent University
+    lines:
+      - 'Dissertation: "Quantifying Uncertainty and Improving Reliability of Time-Series Based Deep Learning Models."'
+  - dates: 2018–2019
+    title: Machine Learning Engineer
+    org: Robovision
+    lines:
+      - Developed machine learning pipelines for computer vision applications, transitioning to academia for deeper exploration of research questions.
+  - dates: 2016–2017
+    title: High Performance Computing Team Intern
+    org: Ghent University
+    lines:
+      - Two internships with the HPC team of Ghent University (Jul–Dec 2016 and Jun–Dec 2017).
+
+education:
+  - dates: 2019–2023
+    title: PhD in Computer Science
+    org: Ghent University
+    lines:
+      - 'Dissertation: "Quantifying Uncertainty and Improving Reliability of Time-Series Based Deep Learning Models."'
+      - 'Promotors: Prof. dr. ir. Tom Dhaene, Prof. dr. mult. Dirk Deschrijver.'
+  - dates: 2016–2018
+    title: MSc in Computer Science
+    org: Ghent University
+    lines:
+      - 'Thesis: "Ground Truth Extraction & Transition Analysis of DJ Mixes."'
+  - dates: 2013–2016
+    title: BSc in Informatics
+    org: Ghent University
+
+# Sections made of titled rows. Each row has a title and optionally
+# `text` (a paragraph) and `list` (bullet points).
+sections:
+  - id: grants
+    title: Grants and Awards
+    icon: fa-medal
+    rows:
+      - title: FWO Postdoctoral Fellowship
+        text: 'Funded by the Research Foundation Flanders (FWO) for postdoctoral research on Trustworthy ML and uncertainty quantification in deep learning (2025–2028). Highly selective: 211 of 1,308 applications funded (16.1% success rate).'
+      - title: Academic Representation
+        text: Selected as a PhD representative for the Flanders AI Research Program (2023).
+
+  - id: talks
+    title: Invited Talks
+    icon: fa-person-chalkboard
+    rows:
+      - title: Trustworthy and Reliable (Deep) Machine Learning for Healthcare
+        text: IBEC, Barcelona, Spain (2025)
+      - title: 'Trustworthy ML for Healthcare: Challenges and Developments'
+        text: Winkelhaak, Antwerp, Belgium (2024)
+
+  - id: leadership
+    title: Teaching and Supervision
+    icon: fa-chalkboard-user
+    rows:
+      - title: Teaching Assistant
+        text: Courses on Computer Science, Machine Learning, and Logic at Ghent University (2019–Present).
+      - title: Master's Thesis Supervision
+        text: 'Supervised multiple Master''s theses, with students publishing conference papers under guidance:'
+        list:
+          - 'Vincent-De Sloover, Louis, et al. "Tailoring Radar-Based Patient Monitoring Models to Real-Life Needs using Utility Maximization." *2022 19th European Radar Conference (EuRAD)*. IEEE, 2022.'
+          - 'Tuytte, Victor, et al. "Optimized Data Transmission for Radar-Based Edge-Cloud Human Activity Recognition via Quantization." *2024 21st European Radar Conference (EuRAD)*. IEEE, 2024.'
+      - title: PhD Mentoring and Juries
+        text: Member of four PhD examination committees; informal support of PhD students.
+
+  - id: service
+    title: Service and Outreach
+    icon: fa-handshake-angle
+    rows:
+      - title: Peer Review Service
+        text: Regular reviewer for *Scientific Reports* and *IEEE Transactions on Biomedical Engineering*.
+      - title: Science Communication
+        text: 'Explaining AI to a broad audience on television:'
+        list:
+          - '*VRT NWS Laat* (VRT, 15 October 2024): expert guest on the energy consumption of AI.'
+          - '*Karrewiet* (Ketnet, 3 June 2019): explaining Google Home and Google Assistant.'
+          - '*Pano* (VRT, 19 September 2018), "Uw job overgenomen door artificiële intelligentie?": an AI model generating piano music in the style of Jef Neve, trained on his own recordings.'
+      - title: Faculty Council
+        text: Member of the Faculty Council, Faculty of Engineering and Architecture, Ghent University (present).
+      - title: CodeFever Volunteer
+        text: Volunteer at CodeFever, an independent education programme teaching programming to children aged 8–16 (Ghent, 2018–2019).
+      - title: IT Coordinator, Student Kick-Off
+        text: IT Coordinator at Student Kick-Off vzw, the organisation behind the annual student festival opening the academic year in Ghent (2015–2017).
+      - title: Zeus WPI Board Member
+        text: Board member of Zeus WPI, the computer science student association of Ghent University, organising programming classes and talks (2014–2018).
+      - title: Student Representative
+        text: Represented BSc Informatics students in the Study Programme Committee at Ghent University, including during the 2016 programme reform (2014–2016).
+
+  - id: mobility
+    title: Mobility and Research Stays
+    icon: fa-earth-europe
+    rows:
+      - title: Visiting Researcher
+        text: '*University of Sydney, Australia (2022)*'
+      - title: Research Stay (planned)
+        text: '*Boston University, USA (2027)* – Lab of Kayhan Batmanghelich, working on a multimodal foundation model for time series, as part of the FWO project.'
+
+  - id: artistic
+    title: Artistic Work (JTTR)
+    icon: fa-music
+    rows:
+      - title: Electronic Music
+        text: Over 200,000 plays on SoundCloud and YouTube under the name JTTR.
+        list:
+          - '2016: "default affinity" and "boule de berlin" featured in the video game *CROSS×BEATS* (Capcom, iOS).'
+          - '2016: Music for the video "Benny Gold X Miller High Life" (YouTube).'
+          - '2014: Music on the album *The Synthesis Collective* (S2TB Recording, S2TB-0011).'
+      - title: Sound Designer, Tone2 Audiosoftware
+        text: Commissioned to design synthesizer patches and write demo songs (remote, 2015–2017).
+
+research_interests:
+  - Trustworthy Machine Learning (TML)
+  - Uncertainty Quantification in Deep Learning
+  - Event-Based Time Series Analysis
+  - Multimodal Data Integration
+  - Self-Supervised Learning for Healthcare Applications
+
+# `icon` is a Font Awesome class used on the web page only.
+skills:
+  - title: Programming Languages
+    items:
+      - { name: Python, icon: fa-brands fa-python }
+      - { name: C, icon: fa-solid fa-code }
+      - { name: C++, icon: fa-solid fa-code }
+      - { name: MATLAB, icon: fa-solid fa-square-root-variable }
+  - title: Deep Learning Frameworks
+    items:
+      - { name: TensorFlow, icon: fa-solid fa-network-wired }
+      - { name: PyTorch, icon: fa-solid fa-microchip }
+  - title: Data Science
+    items:
+      - { name: Time Series Analysis }
+      - { name: Uncertainty Quantification }
+      - { name: Statistical Modeling }
+      - { name: Data Visualization }
+  - title: Languages
+    style: pills
+    items:
+      - { name: "English (C2)" }
+      - { name: "Dutch (C2, Native)" }
+      - { name: "French (B2)" }
+      - { name: "Spanish (A2)" }

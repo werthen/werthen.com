@@ -157,6 +157,8 @@ include:
   - _pages
   - files
 exclude:
+  - _cv
+  - .githooks
   - "*.sublime-project"
   - "*.sublime-workspace"
   - .asset-cache

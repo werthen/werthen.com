@@ -8,7 +8,13 @@ redirect_from:
   - /resume
 ---
 
+{% comment %}
+  All CV content lives in _data/cv.yml, which also generates the PDF
+  (ruby _cv/build.rb). Edit the data file, not this page.
+{% endcomment %}
+
 {% include base_path %}
+{% assign cv = site.data.cv %}
 
 <div class="cv-layout">
   <header class="cv-header">
@@ -34,230 +40,95 @@ redirect_from:
 
   <div class="cv-grid">
     <section class="cv-section cv-section--summary">
-      <p class="cv-tagline">Postdoctoral researcher at IDLab &ndash; Ghent University working on trustworthy machine learning and uncertainty quantification, with applications spanning healthcare diagnostics, time-series analysis, and control.</p>
+      <p class="cv-tagline">{{ cv.tagline | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
     </section>
 
     <section class="cv-section cv-section--publications">
       <h2><i class="fa-solid fa-book-open" aria-hidden="true"></i> Selected Publications</h2>
       <ol class="cv-publications">
-        <li>
-          <strong>Werthen-Brabants, L.</strong>, et al. (2024). "Deep Learning-Based Event Counting for Apnea-Hypopnea Index Estimation using Recursive Spiking Neural Networks." <em>IEEE Transactions on Biomedical Engineering</em>.
-        </li>
-        <li>
-          <strong>Werthen-Brabants, L.</strong>, et al. (2022). "Split BiRNN for real-time activity recognition using radar and deep learning." <em>Scientific Reports</em>.
-        </li>
-        <li>
-          <strong>Werthen-Brabants, L.</strong>, et al. (2022). "Uncertainty quantification for appliance recognition in non-intrusive load monitoring using Bayesian deep learning." <em>Energy and Buildings</em>.
-        </li>
-        <li>
-          Bhavanasi, G., <strong>Werthen-Brabants, L., et al.</strong> (2022). "Patient activity recognition using radar sensors and machine learning." <em>Neural Computing and Applications</em>.
-        </li>
-        <li>
-          Castillo-Escario, Y., <strong>Werthen-Brabants, L.</strong>, et al. (2022). "Convolutional neural networks for Apnea detection from smartphone audio signals: effect of window size." <em>IEEE EMBC Conference</em>.
-        </li>
+        {%- for pub in cv.selected_publications %}
+        <li>{{ pub | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
+        {%- endfor %}
       </ol>
     </section>
 
-    <section class="cv-section cv-section--experience">
-      <h2><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Professional Experience</h2>
+    {%- assign timelines = "experience|Professional Experience|fa-briefcase,education|Education|fa-graduation-cap" | split: "," %}
+    {%- for tl in timelines %}
+    {%- assign tl_parts = tl | split: "|" %}
+    {%- assign tl_key = tl_parts[0] %}
+
+    <section class="cv-section cv-section--{{ tl_key }}">
+      <h2><i class="fa-solid {{ tl_parts[2] }}" aria-hidden="true"></i> {{ tl_parts[1] }}</h2>
       <div class="cv-timeline">
+        {%- for item in cv[tl_key] %}
         <article class="cv-timeline-item">
-          <p class="cv-date">2025-2028</p>
+          <p class="cv-date">{{ item.dates }}</p>
           <div class="cv-item-body">
-            <h3>Postdoctoral Fellow</h3>
-            <p>FWO &amp; IDLab - imec, Ghent University</p>
-            <p>Focus on Trustworthy Machine Learning (TML) and uncertainty quantification in deep learning models, with applications in healthcare diagnostics. Grant number 1264826N.</p>
+            <h3>{{ item.title }}</h3>
+            <p>{% if tl_key == "education" %}<em>{{ item.org }}</em>{% else %}{{ item.org | xml_escape }}{% endif %}</p>
+            {%- for line in item.lines %}
+            <p>{{ line | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
+            {%- endfor %}
           </div>
         </article>
-        <article class="cv-timeline-item">
-          <p class="cv-date">2023-2025</p>
-          <div class="cv-item-body">
-            <h3>Postdoctoral Researcher</h3>
-            <p>IDLab - imec, Ghent University</p>
-            <p>Research focused on emerging probabilistic hardware (p-bits), with a focus on Model Predictive Control</p>
-          </div>
-        </article>
-        <article class="cv-timeline-item">
-          <p class="cv-date">2019-2023</p>
-          <div class="cv-item-body">
-            <h3>PhD Student</h3>
-            <p>IDLab - imec, Ghent University</p>
-            <p>Title of dissertation: "Quantifying Uncertainty and Improving Reliability of Time-Series Based Deep Learning Models".</p>
-          </div>
-        </article>
-        <article class="cv-timeline-item">
-          <p class="cv-date">2018-2019</p>
-          <div class="cv-item-body">
-            <h3>Machine Learning Engineer</h3>
-            <p>Robovision</p>
-            <p>Developed machine learning pipelines for computer vision applications, transitioning to academia for deeper exploration of research questions.</p>
-          </div>
-        </article>
+        {%- endfor %}
       </div>
     </section>
+    {%- endfor %}
 
-    <section class="cv-section cv-section--education">
-      <h2><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Education</h2>
-      <div class="cv-timeline">
-        <article class="cv-timeline-item">
-          <p class="cv-date">2019-2023</p>
-          <div class="cv-item-body">
-            <h3>PhD in Computer Science</h3>
-            <p><em>Ghent University</em></p>
-            <p>Dissertation: "Quantifying Uncertainty and Improving Reliability of Time-Series Based Deep Learning Models"</p>
-            <p>Promotors: Prof. dr. ir. Tom Dhaene, Prof. dr. mult. Dirk Deschrijver</p>
-          </div>
-        </article>
-        <article class="cv-timeline-item">
-          <p class="cv-date">2016-2018</p>
-          <div class="cv-item-body">
-            <h3>MSc in Computer Science</h3>
-            <p><em>Ghent University</em></p>
-            <p>Thesis: Focused on machine learning methods for time-series data.</p>
-          </div>
-        </article>
-        <article class="cv-timeline-item">
-          <p class="cv-date">2013-2016</p>
-          <div class="cv-item-body">
-            <h3>BSc in Informatics</h3>
-            <p><em>Ghent University</em></p>
-          </div>
-        </article>
-      </div>
-    </section>
+    {%- for section in cv.sections %}
 
-    <section class="cv-section cv-section--grants">
-      <h2><i class="fa-solid fa-medal" aria-hidden="true"></i> Grants and Awards</h2>
+    <section class="cv-section cv-section--{{ section.id }}">
+      <h2><i class="fa-solid {{ section.icon }}" aria-hidden="true"></i> {{ section.title }}</h2>
       <div class="cv-band">
+        {%- for row in section.rows %}
         <article class="cv-row">
-          <h3 class="cv-row-title">FWO Postdoctoral Fellowship</h3>
-          <p class="cv-row-text">Funded by the Research Foundation Flanders (FWO) for postdoctoral research on Trustworthy ML and uncertainty quantification in deep learning (2025-2028).</p>
+          <h3 class="cv-row-title">{{ row.title }}</h3>
+          {%- if row.text %}
+          <p class="cv-row-text">{{ row.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
+          {%- endif %}
+          {%- if row.list %}
+          <ul class="cv-row-text">
+            {%- for li in row.list %}
+            <li>{{ li | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
+            {%- endfor %}
+          </ul>
+          {%- endif %}
         </article>
-        <article class="cv-row">
-          <h3 class="cv-row-title">Academic Representation</h3>
-          <p class="cv-row-text">Selected as a PhD representative for the Flanders AI Research Program (2023).</p>
-        </article>
+        {%- endfor %}
       </div>
     </section>
-
-    <section class="cv-section cv-section--talks">
-      <h2><i class="fa-solid fa-person-chalkboard" aria-hidden="true"></i> Invited Talks</h2>
-      <div class="cv-band">
-        <article class="cv-row">
-          <h3 class="cv-row-title">Trustworthy and Reliable (Deep) Machine Learning for Healthcare</h3>
-          <p class="cv-row-text">IBEC, Barcelona, Spain (2025)</p>
-        </article>
-        <article class="cv-row">
-          <h3 class="cv-row-title">Trustworthy ML for Healthcare: Challenges and Developments</h3>
-          <p class="cv-row-text">Winkelhaak, Antwerp, Belgium (2024)</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="cv-section cv-section--leadership">
-      <h2><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i> Teaching and Supervision</h2>
-      <div class="cv-band">
-        <article class="cv-row">
-          <h3 class="cv-row-title">Teaching Assistant</h3>
-          <p class="cv-row-text">Courses on Computer Science, Machine Learning, and Logic at Ghent University (2019-Present).</p>
-        </article>
-        <article class="cv-row">
-          <h3 class="cv-row-title">Master's Thesis Supervision</h3>
-          <p class="cv-row-text">Supervised multiple Master's theses, with students publishing conference papers under guidance.</p>
-          <p class="cv-row-text"><strong>Vincent-De Sloover, Louis, et al.</strong> "Tailoring Radar-Based Patient Monitoring Models to Real-Life Needs using Utility Maximization." 2022 19th European Radar Conference (EuRAD). IEEE, 2022.</p>
-          <p class="cv-row-text"><strong>Tuytte, Victor, et al.</strong> "Optimized Data Transmission for Radar-Based Edge-Cloud Human Activity Recognition via Quantization." 2024 21st European Radar Conference (EuRAD). IEEE, 2024.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="cv-section cv-section--service">
-      <h2><i class="fa-solid fa-handshake-angle" aria-hidden="true"></i> Service and Outreach</h2>
-      <div class="cv-band">
-        <article class="cv-row">
-          <h3 class="cv-row-title">Peer Review Service</h3>
-          <p class="cv-row-text">Regular reviewer for <em>Scientific Reports</em> and <em>IEEE Transactions on Biomedical Engineering</em>.</p>
-        </article>
-        <article class="cv-row">
-          <h3 class="cv-row-title">Science Communication</h3>
-          <p class="cv-row-text">Featured in public AI discussions, including television appearances (e.g., Karrewiet 2019, VRT NWS Laat 2024).</p>
-        </article>
-        <article class="cv-row">
-          <h3 class="cv-row-title">CodeFever Volunteer</h3>
-          <p class="cv-row-text">Volunteer at CodeFever, an independent education programme teaching programming to children aged 8&ndash;16 (Ghent, 2018&ndash;2019).</p>
-        </article>
-        <article class="cv-row">
-          <h3 class="cv-row-title">Student Representative</h3>
-          <p class="cv-row-text">Represented BSc Informatics students in the Study Programme Committee at Ghent University, including during the 2016 programme reform (2014&ndash;2016).</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="cv-section cv-section--mobility">
-      <h2><i class="fa-solid fa-earth-europe" aria-hidden="true"></i> Mobility and Research Stays</h2>
-      <div class="cv-band">
-        <article class="cv-row">
-          <h3 class="cv-row-title">Visiting Researcher</h3>
-          <p class="cv-row-text"><em>University of Sydney, Australia (2022)</em></p>
-        </article>
-      </div>
-    </section>
+    {%- endfor %}
 
     <section class="cv-section cv-section--interests">
       <h2><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Research Interests</h2>
-      <p class="cv-tagline">Trustworthy Machine Learning (TML) · Uncertainty Quantification in Deep Learning · Event-Based Time Series Analysis · Multimodal Data Integration · Self-Supervised Learning for Healthcare Applications</p>
+      <p class="cv-tagline">{{ cv.research_interests | join: " · " }}</p>
     </section>
 
     <section class="cv-section cv-section--skills">
       <h2><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Skills</h2>
       <div class="cv-band">
+        {%- for group in cv.skills %}
         <article class="cv-row">
-          <h3 class="cv-row-title">Programming Languages</h3>
-          <div class="cv-skill-list">
-            <span class="cv-skill"><i class="fa-brands fa-python" aria-hidden="true"></i> Python</span>
-            <span class="cv-skill"><i class="fa-solid fa-code" aria-hidden="true"></i> C</span>
-            <span class="cv-skill"><i class="fa-solid fa-code" aria-hidden="true"></i> C++</span>
-            <span class="cv-skill"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i> MATLAB</span>
-          </div>
-        </article>
-        <article class="cv-row">
-          <h3 class="cv-row-title">Deep Learning Frameworks</h3>
-          <div class="cv-skill-list">
-            <span class="cv-skill"><i class="fa-solid fa-network-wired" aria-hidden="true"></i> TensorFlow</span>
-            <span class="cv-skill"><i class="fa-solid fa-microchip" aria-hidden="true"></i> PyTorch</span>
-          </div>
-        </article>
-        <article class="cv-row">
-          <h3 class="cv-row-title">Data Science</h3>
-          <p class="cv-row-text">Time Series Analysis, Uncertainty Quantification, Statistical Modeling, Data Visualization.</p>
-        </article>
-        <article class="cv-row">
-          <h3 class="cv-row-title">Languages</h3>
+          <h3 class="cv-row-title">{{ group.title }}</h3>
+          {%- if group.style == "pills" %}
           <div class="cv-inline-meta">
-            <span class="cv-pill">English (C2)</span>
-            <span class="cv-pill">Dutch (C2, Native)</span>
-            <span class="cv-pill">French (B2)</span>
-            <span class="cv-pill">Spanish (A2)</span>
+            {%- for s in group.items %}
+            <span class="cv-pill">{{ s.name }}</span>
+            {%- endfor %}
           </div>
+          {%- elsif group.items[0].icon %}
+          <div class="cv-skill-list">
+            {%- for s in group.items %}
+            <span class="cv-skill"><i class="{{ s.icon }}" aria-hidden="true"></i> {{ s.name }}</span>
+            {%- endfor %}
+          </div>
+          {%- else %}
+          <p class="cv-row-text">{{ group.items | map: "name" | join: ", " }}.</p>
+          {%- endif %}
         </article>
+        {%- endfor %}
       </div>
     </section>
   </div>
 </div>
-
-<!-- ## Publications
-
-<ul>{% for post in site.publications reversed %}
-  {% include archive-single-cv.html %}
-{% endfor %}</ul> -->
-  
-<!-- Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul> -->
-  
-<!-- Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul> -->

@@ -1,0 +1,176 @@
+% Generated into _cv/build/cv.tex by `ruby _cv/build.rb` from _data/cv.yml,
+% _config.yml (author) and _publications/. Edit those, not the generated file.
+\documentclass[10.5pt,a4paper]{article}
+
+% ---------- Packages ----------
+\usepackage[margin=2cm,top=1.7cm,bottom=1.7cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{parskip}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ragged2e}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+% ---------- Colors ----------
+\definecolor{accent}{HTML}{2E5266}
+\definecolor{darkgray}{HTML}{333333}
+\definecolor{midgray}{HTML}{666666}
+\definecolor{rulegray}{HTML}{CCCCCC}
+
+\color{darkgray}
+
+% ---------- Section formatting ----------
+\titleformat{\section}
+  {\large\bfseries\color{accent}}
+  {}{0em}{}
+  [\vspace{0.4em}{\color{rulegray}\hrule height 0.8pt}\vspace{0.5em}]
+\titlespacing{\section}{0pt}{1.8em}{0.7em}
+
+% Sections wrapped in \cvsection keep their heading and body together on
+% one page (the block is pushed to the next page as a whole if it doesn't
+% fit). The final "Full List of Publications" section is left unwrapped
+% so it can flow across pages.
+\newenvironment{cvsection}[1]{%
+  \vspace{1.8em}%
+  \begin{minipage}[t]{\textwidth}
+  \vspace{0pt}%
+  \titlespacing{\section}{0pt}{0pt}{0.7em}%
+  \section{#1}%
+}{%
+  \end{minipage}%
+  \titlespacing{\section}{0pt}{1.8em}{0.7em}%
+}
+
+\titleformat{\subsection}
+  {\bfseries\color{darkgray}}
+  {}{0em}{}
+\titlespacing{\subsection}{0pt}{1em}{0.3em}
+
+% ---------- Misc ----------
+\setlist[itemize]{leftmargin=1.1em, itemsep=1pt, topsep=2pt, parsep=0pt}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% Helper for timeline-style entries
+\newcommand{\cvitem}[4]{%
+  % #1 = dates, #2 = title, #3 = org, #4 = description
+  \noindent
+  \begin{tabularx}{\textwidth}{@{}p{2.1cm}X@{}}
+    {\small\color{midgray}#1} & {\bfseries #2} \\
+    & {\itshape\small #3} \\[2pt]
+    & {\small #4}
+  \end{tabularx}
+  \vspace{0.9em}
+}
+
+\newcommand{\cvrow}[2]{%
+  {\bfseries #1}\\
+  {\small #2}
+  \vspace{0.8em}
+  \par
+}
+
+% Circular photo helper: #1 = image file, #2 = radius
+\newcommand{\circphoto}[2]{%
+  \begin{tikzpicture}
+    \pgfmathsetlengthmacro{\photodiam}{2*#2}
+    \clip (0,0) circle (#2);
+    \node at (0,0) {\includegraphics[width=\photodiam, height=\photodiam, keepaspectratio]{#1}};
+  \end{tikzpicture}%
+}
+
+\pdfobjcompresslevel=1 % keep the Info dict readable for `build.rb --check`
+\hypersetup{pdftitle={<%= author['name'] %> -- CV}, pdfauthor={<%= author['name'] %>}, pdfsubject={cv-source:<%= source_hash %>}}
+
+\begin{document}
+
+% ================= HEADER =================
+\noindent
+\begin{minipage}[c]{3.4cm}
+  \circphoto{photo.jpg}{1.7cm}
+\end{minipage}%
+\hspace{1.2cm}%
+\begin{minipage}[c]{\dimexpr\textwidth-4.8cm\relax}
+\raggedright
+  {\Huge\bfseries\color{accent} <%= tex author['name'] %>}\\[4pt]
+  {\large\color{midgray} <%= tex author['bio'] %>}\\[8pt]
+  {\small
+    \faUniversity\ <%= tex author['employer'].sub(' - ', ' – ') %> \,\vline\,
+    \faMapMarker*\ <%= tex author['location'] %> \,\vline\,
+    \faEnvelope\ \href{mailto:<%= author['email'] %>}{<%= tex author['email'] %>}
+  }\\[4pt]
+  {\small
+    \faGraduationCap\ \href{<%= url author['googlescholar'] %>}{Google Scholar} \,\vline\,
+    \faIdCard\ \href{<%= url author['orcid'] %>}{ORCID <%= author['orcid'].split('/').last %>} \,\vline\,
+    \faGlobe\ \href{<%= url site_url %>}{<%= site_url.sub(%r{^https?://(www\.)?}, '') %>}
+  }
+\end{minipage}
+
+\vspace{0.5em}
+
+\begin{center}
+\small\itshape <%= tex cv['tagline'] %>
+\end{center}
+
+\vspace{0.3em}
+<% [['experience', 'Professional Experience'], ['education', 'Education']].each do |key, heading| %>
+\begin{cvsection}{<%= heading %>}
+<% cv[key].each do |item| %>
+\cvitem{<%= tex item['dates'] %>}{<%= tex item['title'] %>}{<%= tex item['org'] %>}{<%= (item['lines'] || []).map { |l| tex l }.join(' ') %>}
+<% end %>
+\end{cvsection}
+<% end %>
+\begin{cvsection}{Selected Publications}
+
+\small
+\begin{enumerate}[leftmargin=1.4em, itemsep=3pt, topsep=2pt, label={[\arabic*]}]
+<% cv['selected_publications'].each do |p| %>
+\item <%= tex p %>
+<% end %>
+\end{enumerate}
+
+\textit{\small Full publication list at \href{<%= url site_url %>/publications/}{<%= site_url.sub(%r{^https?://(www\.)?}, '') %>/publications} and at the end of this document.}
+
+\end{cvsection}
+<% cv['sections'].each do |section| %>
+\begin{cvsection}{<%= tex section['title'] %>}
+<% section['rows'].each do |row| %>
+\cvrow{<%= tex row['title'] %>}{<%= tex row['text'] %><% if row['list'] %>
+\begin{itemize}
+<% row['list'].each do |li| %>
+\item <%= tex li %>
+<% end %>
+\end{itemize}<% end %>}
+<% end %>
+\end{cvsection}
+<% end %>
+\begin{cvsection}{Research Interests}
+
+\small <%= cv['research_interests'].map { |i| tex i }.join(' \textperiodcentered\ ') %>
+
+\end{cvsection}
+
+\begin{cvsection}{Skills}
+<% cv['skills'].each do |group| %>
+\cvrow{<%= tex group['title'] %>}{<%= group['items'].map { |s| tex s['name'] }.join(group['style'] == 'pills' ? ' \textbullet\ ' : ', ') %>}
+<% end %>
+\end{cvsection}
+
+% ================= FULL PUBLICATION LIST (from _publications/) =================
+\section{Full List of Publications}
+
+\small
+\begin{enumerate}[leftmargin=1.4em, itemsep=4pt, topsep=2pt, label={[\arabic*]}]
+<% publications.each do |p| %>
+\item <%= p %>
+<% end %>
+\end{enumerate}
+
+\end{document}

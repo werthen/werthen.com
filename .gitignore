@@ -13,3 +13,6 @@ node_modules
 package-lock.json
 
 vendor/
+
+# Generated LaTeX build output for the PDF CV
+_cv/build/

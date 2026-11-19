@@ -1,0 +1,7 @@
+#!/bin/sh
+# Refuse commits where the PDF CV no longer matches its sources
+# (_data/cv.yml, _config.yml, _publications/, _cv/). Enable with:
+#   git config core.hooksPath .githooks
+if git diff --cached --name-only | grep -qE '^(_data/cv\.yml|_config\.yml|_publications/|_cv/|files/lorin-werthen-brabants-cv\.pdf)'; then
+  ruby _cv/build.rb --check || exit 1
+fi
