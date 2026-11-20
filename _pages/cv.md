@@ -16,119 +16,119 @@ redirect_from:
 {% include base_path %}
 {% assign cv = site.data.cv %}
 
-<div class="cv-layout">
-  <header class="cv-header">
-    <div class="cv-header-top">
-      <img class="cv-avatar" src="{{ site.author.avatar | prepend: '/images/' | prepend: base_path }}" alt="{{ site.author.name }}">
-      <div class="cv-header-text">
-        <h2 class="cv-name">{{ site.author.name }}</h2>
-        <p class="cv-role">{{ site.author.bio }}</p>
+<div class="cv">
+  <header class="cv-hero">
+    <img class="cv-avatar" src="{{ site.author.avatar | prepend: '/images/' | prepend: base_path }}" alt="{{ site.author.name }}">
+    <div class="cv-hero-text">
+      <h2 class="cv-name">{{ site.author.name }}</h2>
+      <p class="cv-role">{{ site.author.bio }}</p>
+      <ul class="cv-contact">
+        <li>{{ site.author.employer }}</li>
+        <li>{{ site.author.location }}</li>
+        <li><a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></li>
+      </ul>
+    </div>
+    <nav class="cv-actions" aria-label="CV links">
+      <a class="cv-btn" href="{{ base_path }}/files/lorin-werthen-brabants-cv.pdf">Download PDF <span aria-hidden="true">↓</span></a>
+      <div class="cv-actions-links">
+        <a href="{{ site.author.googlescholar }}">Google Scholar</a>
+        <a href="{{ site.author.orcid }}">ORCID</a>
+        <a href="{{ base_path }}/publications/">All publications</a>
       </div>
-    </div>
-    <div class="cv-contact-inline">
-      <span><i class="fa-solid fa-building-columns" aria-hidden="true"></i> {{ site.author.employer }}</span>
-      <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i> {{ site.author.location }}</span>
-      <span><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></span>
-    </div>
-    <nav class="cv-links" aria-label="Academic profiles">
-      <a href="{{ site.author.googlescholar }}">Google Scholar</a>
-      <a href="{{ site.author.orcid }}">ORCID</a>
-      <a href="{{ base_path }}/publications/">Publications</a>
-      <a href="{{ base_path }}/files/lorin-werthen-brabants-cv.pdf"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Download PDF</a>
     </nav>
   </header>
 
-  <div class="cv-grid">
-    <section class="cv-section cv-section--summary">
-      <p class="cv-tagline">{{ cv.tagline | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
-    </section>
+  <div class="cv-intro">
+    <p class="cv-lead">{{ cv.tagline | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
+    <div class="cv-interests">
+      <span class="cv-interests-label">Research interests</span>
+      <ul>
+        {%- for interest in cv.research_interests %}
+        <li>{{ interest }}</li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </div>
 
-    <section class="cv-section cv-section--publications">
-      <h2><i class="fa-solid fa-book-open" aria-hidden="true"></i> Selected Publications</h2>
-      <ol class="cv-publications">
+  {%- assign n = 0 %}
+
+  {%- assign n = n | plus: 1 %}
+  <section class="cv-sec cv-sec--publications" id="cv-publications">
+    <div class="cv-sec-head"><span class="cv-sec-num">{% if n < 10 %}0{% endif %}{{ n }}</span><h2>Selected Publications</h2></div>
+    <div class="cv-sec-body">
+      <ol class="cv-pubs">
         {%- for pub in cv.selected_publications %}
         <li>{{ pub | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
         {%- endfor %}
       </ol>
-    </section>
+      <a class="cv-more" href="{{ base_path }}/publications/">See all publications →</a>
+    </div>
+  </section>
 
-    {%- assign timelines = "experience|Professional Experience|fa-briefcase,education|Education|fa-graduation-cap" | split: "," %}
-    {%- for tl in timelines %}
-    {%- assign tl_parts = tl | split: "|" %}
-    {%- assign tl_key = tl_parts[0] %}
+  {%- assign timelines = "experience|Professional Experience,education|Education" | split: "," %}
+  {%- for tl in timelines %}
+  {%- assign tl_parts = tl | split: "|" %}
+  {%- assign tl_key = tl_parts[0] %}
+  {%- assign n = n | plus: 1 %}
 
-    <section class="cv-section cv-section--{{ tl_key }}">
-      <h2><i class="fa-solid {{ tl_parts[2] }}" aria-hidden="true"></i> {{ tl_parts[1] }}</h2>
-      <div class="cv-timeline">
+  <section class="cv-sec cv-sec--{{ tl_key }}" id="cv-{{ tl_key }}">
+    <div class="cv-sec-head"><span class="cv-sec-num">{% if n < 10 %}0{% endif %}{{ n }}</span><h2>{{ tl_parts[1] }}</h2></div>
+    <div class="cv-sec-body">
+      <ol class="cv-timeline">
         {%- for item in cv[tl_key] %}
-        <article class="cv-timeline-item">
-          <p class="cv-date">{{ item.dates }}</p>
-          <div class="cv-item-body">
-            <h3>{{ item.title }}</h3>
-            <p>{% if tl_key == "education" %}<em>{{ item.org }}</em>{% else %}{{ item.org | xml_escape }}{% endif %}</p>
-            {%- for line in item.lines %}
-            <p>{{ line | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
-            {%- endfor %}
-          </div>
-        </article>
+        <li class="cv-tl-item{% if forloop.first and tl_key == 'experience' %} is-current{% endif %}">
+          <p class="cv-date">{{ item.dates }}{% if forloop.first and tl_key == 'experience' %}<span class="cv-badge">Current</span>{% endif %}</p>
+          <h3>{{ item.title }}</h3>
+          <p class="cv-org">{{ item.org | xml_escape }}</p>
+          {%- for line in item.lines %}
+          <p class="cv-desc">{{ line | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
+          {%- endfor %}
+        </li>
         {%- endfor %}
+      </ol>
+    </div>
+  </section>
+  {%- endfor %}
+
+  {%- for section in cv.sections %}
+  {%- assign n = n | plus: 1 %}
+
+  <section class="cv-sec cv-sec--{{ section.id }}" id="cv-{{ section.id }}">
+    <div class="cv-sec-head"><span class="cv-sec-num">{% if n < 10 %}0{% endif %}{{ n }}</span><h2>{{ section.title }}</h2></div>
+    <div class="cv-sec-body cv-rows">
+      {%- for row in section.rows %}
+      <article class="cv-row{% if row.list %} has-list{% endif %}">
+        <h3 class="cv-row-title">{{ row.title }}</h3>
+        {%- if row.text %}
+        <p class="cv-row-text">{{ row.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
+        {%- endif %}
+        {%- if row.list %}
+        <ul class="cv-row-list">
+          {%- for li in row.list %}
+          <li>{{ li | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+      </article>
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endfor %}
+
+  {%- assign n = n | plus: 1 %}
+  <section class="cv-sec cv-sec--skills" id="cv-skills">
+    <div class="cv-sec-head"><span class="cv-sec-num">{% if n < 10 %}0{% endif %}{{ n }}</span><h2>Skills</h2></div>
+    <div class="cv-sec-body cv-skills">
+      {%- for group in cv.skills %}
+      <div class="cv-skill-group">
+        <h3>{{ group.title }}</h3>
+        <ul class="cv-tags{% if group.style == 'pills' %} cv-tags--plain{% endif %}">
+          {%- for s in group.items %}
+          <li>{{ s.name }}</li>
+          {%- endfor %}
+        </ul>
       </div>
-    </section>
-    {%- endfor %}
-
-    {%- for section in cv.sections %}
-
-    <section class="cv-section cv-section--{{ section.id }}">
-      <h2><i class="fa-solid {{ section.icon }}" aria-hidden="true"></i> {{ section.title }}</h2>
-      <div class="cv-band">
-        {%- for row in section.rows %}
-        <article class="cv-row">
-          <h3 class="cv-row-title">{{ row.title }}</h3>
-          {%- if row.text %}
-          <p class="cv-row-text">{{ row.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
-          {%- endif %}
-          {%- if row.list %}
-          <ul class="cv-row-text">
-            {%- for li in row.list %}
-            <li>{{ li | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
-            {%- endfor %}
-          </ul>
-          {%- endif %}
-        </article>
-        {%- endfor %}
-      </div>
-    </section>
-    {%- endfor %}
-
-    <section class="cv-section cv-section--interests">
-      <h2><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Research Interests</h2>
-      <p class="cv-tagline">{{ cv.research_interests | join: " · " }}</p>
-    </section>
-
-    <section class="cv-section cv-section--skills">
-      <h2><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Skills</h2>
-      <div class="cv-band">
-        {%- for group in cv.skills %}
-        <article class="cv-row">
-          <h3 class="cv-row-title">{{ group.title }}</h3>
-          {%- if group.style == "pills" %}
-          <div class="cv-inline-meta">
-            {%- for s in group.items %}
-            <span class="cv-pill">{{ s.name }}</span>
-            {%- endfor %}
-          </div>
-          {%- elsif group.items[0].icon %}
-          <div class="cv-skill-list">
-            {%- for s in group.items %}
-            <span class="cv-skill"><i class="{{ s.icon }}" aria-hidden="true"></i> {{ s.name }}</span>
-            {%- endfor %}
-          </div>
-          {%- else %}
-          <p class="cv-row-text">{{ group.items | map: "name" | join: ", " }}.</p>
-          {%- endif %}
-        </article>
-        {%- endfor %}
-      </div>
-    </section>
-  </div>
+      {%- endfor %}
+    </div>
+  </section>
 </div>
