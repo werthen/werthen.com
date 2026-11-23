@@ -3,33 +3,30 @@ layout: inner
 ---
 
 <article class="inner-article">
-  <div class="inner-article-meta">
-    {% if page.venue %}
-    <span class="inner-article-venue">{{ page.venue }}</span>
-    {% endif %}
-    {% if page.date %}
-    <span class="inner-article-date">{{ page.date | date: "%Y" }}</span>
-    {% endif %}
-    {% if page.category %}
-    <span class="inner-article-badge inner-article-badge--{{ page.category }}">
-      {% if page.category == 'journal' %}Journal
-      {% elsif page.category == 'proceeding' %}Conference
-      {% else %}{{ page.category | capitalize }}{% endif %}
-    </span>
-    {% endif %}
-  </div>
+  <p class="inner-article-meta">
+    {% if page.venue %}<span class="inner-article-venue">{{ page.venue | remove_first: 'the proceedings of ' }}</span>{% endif %}
+    {% if page.date %}<span>{{ page.date | date: "%Y" }}</span>{% endif %}
+    {% if page.category == 'journal' %}<span class="badge">Journal</span>
+    {% elsif page.category == 'proceeding' %}<span class="badge">Conference</span>
+    {% elsif page.category %}<span class="badge">{{ page.category | capitalize }}</span>{% endif %}
+  </p>
+
+  {% if page.authors %}
+  <p class="inner-article-authors">{{ page.authors | replace: site.author.name, '<strong>Lorin Werthen-Brabants</strong>' }}</p>
+  {% endif %}
 
   {% if page.tldr %}
-  <div class="inner-article-tldr">
-    <div class="inner-article-tldr-label">TL;DR</div>
-    <div class="inner-article-tldr-text">{{ page.tldr }}</div>
+  <div class="tldr">
+    <div class="tldr-label">TL;DR</div>
+    <p>{{ page.tldr }}</p>
   </div>
   {% endif %}
 
   {% if page.paperurl %}
-  <div class="inner-article-actions">
-    <a href="{{ page.paperurl }}" class="btn btn-primary" target="_blank" rel="noopener">Read Paper ↗</a>
-  </div>
+  <p class="inner-article-links">
+    <a href="{{ page.paperurl }}" class="btn" rel="noopener">Read the paper ↗</a>
+    {% if page.doi %}<span class="inner-article-doi">DOI: <a href="https://doi.org/{{ page.doi }}" rel="noopener">{{ page.doi }}</a></span>{% endif %}
+  </p>
   {% endif %}
 
   <div class="prose">

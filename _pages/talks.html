@@ -1,25 +1,6 @@
 ---
-layout: archive
-title: "Talks & Presentations"
-section_label: "Speaking"
+title: "Talks"
 permalink: /talks/
-author_profile: true
+redirect_to: /publications/#talks
+sitemap: false
 ---
-
-{% assign talks_sorted = site.talks | sort: "date" | reverse %}
-<div class="talks-list">
-  {% for talk in talks_sorted %}
-  <div class="talk-item">
-    <div class="talk-date">{{ talk.date | date: "%b %Y" }}</div>
-    <div>
-      <div class="talk-title">
-        <a href="{{ talk.url }}" style="color:inherit;text-decoration:none;">{{ talk.title }}</a>
-        {% if talk.talk_type %}
-        <span class="talk-badge badge-{% if talk.talk_type == 'Invited' %}invited{% else %}conference{% endif %}">{{ talk.talk_type }}</span>
-        {% endif %}
-      </div>
-      <div class="talk-event">{{ talk.venue }}{% if talk.location %} &middot; {{ talk.location }}{% endif %}</div>
-    </div>
-  </div>
-  {% endfor %}
-</div>

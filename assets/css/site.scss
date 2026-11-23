@@ -1,0 +1,99 @@
+---
+---
+/* Shared by every page: tokens, base type, nav, footer. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --bg: #FBFBF9;
+  --surface: #F3F4F1;
+  --text: #1B1D1C;
+  --muted: #5F6461;
+  --faint: #E4E6E3;
+  --accent: #2F6B4F;
+  --accent-hover: #1F4C37;
+  --accent-soft: #E3EEE7;
+  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #151716;
+    --surface: #1C1F1D;
+    --text: #E6E8E6;
+    --muted: #9BA19D;
+    --faint: #2A2E2C;
+    --accent: #7DBF9B;
+    --accent-hover: #A3D6B9;
+    --accent-soft: #1F3329;
+  }
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); text-decoration: underline; text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+img { max-width: 100%; height: auto; }
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Nav */
+.topnav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+  font-size: 15px;
+}
+.topnav-home { color: var(--text); font-weight: 600; letter-spacing: 0.04em; }
+.topnav-home:hover { color: var(--text); text-decoration: none; }
+.topnav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+.topnav ul a { color: var(--muted); }
+.topnav ul a:hover, .topnav ul a[aria-current="page"] { color: var(--text); text-decoration: none; }
+.topnav ul a[aria-current="page"] { font-weight: 500; }
+
+/* Small uppercase section heading, used across pages */
+.label {
+  margin: 0 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--faint);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.foot {
+  margin: 72px 0 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--faint);
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  .topnav ul { gap: 16px; }
+}

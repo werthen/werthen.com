@@ -1,0 +1,10 @@
+{% if page.url == '/publications/' or page.collection == 'publications' or page.collection == 'talks' %}{% assign active_nav = 'publications' %}
+{% elsif page.url == '/cv/' %}{% assign active_nav = 'cv' %}
+{% else %}{% assign active_nav = '' %}{% endif %}
+<nav class="topnav" aria-label="Main">
+  <a href="{{ base_path }}/" class="topnav-home" aria-label="Home">LWB</a>
+  <ul>
+    <li><a href="{{ base_path }}/publications/"{% if active_nav == 'publications' %} aria-current="page"{% endif %}>Publications</a></li>
+    <li><a href="{{ base_path }}/cv/"{% if active_nav == 'cv' %} aria-current="page"{% endif %}>CV</a></li>
+  </ul>
+</nav>

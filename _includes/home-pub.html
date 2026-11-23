@@ -1,0 +1,20 @@
+{% assign p = include.post %}
+{% if p.paperurl %}{% assign p_href = p.paperurl %}{% else %}{% assign p_href = base_path | append: p.url %}{% endif %}
+{% assign p_venue = p.venue | remove_first: 'the proceedings of ' | remove_first: 'The proceedings of ' %}
+<li class="pub">
+  <a class="pub-title" href="{{ p_href }}">{{ p.title }}</a>
+  {% if p.authors %}
+    {% assign p_authors = p.authors | split: ', ' %}
+    {% if p_authors.size > 8 %}
+      {% assign p_head = p_authors | slice: 0, 3 %}
+      {% assign p_short = p_head | join: ', ' %}
+      {% unless p_head contains site.author.name %}{% if p_authors contains site.author.name %}{% assign p_short = p_short | append: ', …, ' | append: site.author.name %}{% endif %}{% endunless %}
+      {% assign p_short = p_short | append: ', et al.' %}
+    {% else %}
+      {% assign p_short = p.authors %}
+    {% endif %}
+    <div class="pub-authors">{{ p_short | replace: site.author.name, '<strong>Lorin Werthen-Brabants</strong>' }}</div>
+  {% endif %}
+  <div class="pub-venue">{{ p_venue }}, {{ p.date | date: "%Y" }}</div>
+  {% if p.tldr %}<p class="pub-tldr">{{ p.tldr }}</p>{% endif %}
+</li>

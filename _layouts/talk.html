@@ -3,19 +3,13 @@ layout: inner
 ---
 
 <article class="inner-article">
-  <div class="inner-article-meta">
-    {% if page.date %}
-    <span class="inner-article-date">{{ page.date | date: "%B %Y" }}</span>
-    {% endif %}
-    {% if page.talk_type %}
-    <span class="inner-article-badge inner-article-badge--{{ page.talk_type | downcase }}">{{ page.talk_type }}</span>
-    {% endif %}
-  </div>
+  <p class="inner-article-meta">
+    {% if page.date %}<span>{{ page.date | date: "%B %Y" }}</span>{% endif %}
+    {% if page.talk_type %}<span class="badge">{{ page.talk_type }}</span>{% endif %}
+  </p>
 
   {% if page.venue %}
-  <div class="inner-article-venue" style="margin-bottom: 36px;">
-    {{ page.venue }}{% if page.location %} &middot; {{ page.location }}{% endif %}
-  </div>
+  <p class="inner-article-venue">{{ page.venue }}{% if page.location %} · {{ page.location }}{% endif %}</p>
   {% endif %}
 
   <div class="prose">

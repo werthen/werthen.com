@@ -1,7 +1,6 @@
 ---
 layout: archive
-title: "Publications"
-section_label: "Selected Publications"
+title: "Publications & Talks"
 permalink: /publications/
 author_profile: true
 ---
@@ -26,7 +25,7 @@ author_profile: true
     <button class="pub-filter is-active" data-filter="all" type="button">All <span>{{ site.publications | size }}</span></button>
     <button class="pub-filter" data-filter="journal" type="button">Journal <span>{{ journals_count }}</span></button>
     <button class="pub-filter" data-filter="proceeding" type="button">Proceeding <span>{{ proceedings_count }}</span></button>
-    <button class="pub-filter" data-filter="books" type="button">Books <span>{{ books_count }}</span></button>
+    {% if books_count > 0 %}<button class="pub-filter" data-filter="books" type="button">Books <span>{{ books_count }}</span></button>{% endif %}
   </div>
   <p id="pub-results" class="pub-results" aria-live="polite"></p>
 </section>
@@ -40,6 +39,7 @@ author_profile: true
       {% capture shown_year %}{{ shown_year }} {{ y }}{% endcapture %}
     {% endunless %}
   {% endfor %}
+  {% if site.talks.size > 0 %}<a href="#talks">Talks</a>{% endif %}
 </section>
 
 <div class="pub-list" id="pub-list">
@@ -70,7 +70,8 @@ author_profile: true
         </h3>
         <p class="pub-item-meta">
           <span class="pub-type"></span>
-          {% if post.venue %}<span class="pub-dot">•</span><span class="pub-venue">{{ post.venue }}</span>{% endif %}
+          {% if post.venue %}<span class="pub-dot">•</span><span class="pub-venue">{{ post.venue | remove_first: 'the proceedings of ' }}</span>{% endif %}
+          {% if post.paperurl %}<a class="pub-link" href="{{ post.paperurl }}" rel="noopener">{% if post.doi %}DOI{% else %}Paper{% endif %} ↗</a>{% endif %}
         </p>
         {% if post.authors %}
         <p class="pub-item-authors">{{ post.authors | replace: 'Werthen-Brabants, L.', '<strong>Werthen-Brabants, L.</strong>' | replace: 'Lorin Werthen-Brabants', '<strong>Lorin Werthen-Brabants</strong>' }}</p>
@@ -86,6 +87,24 @@ author_profile: true
     </section>
   {% endunless %}
 </div>
+
+{% assign talks_sorted = site.talks | sort: "date" | reverse %}
+{% if talks_sorted.size > 0 %}
+<section class="talks" id="talks" aria-labelledby="talks-heading">
+  <h2 class="pub-year-heading" id="talks-heading">Talks</h2>
+  <ol class="talks-list">
+    {% for talk in talks_sorted %}
+    <li class="talk-item">
+      <div class="talk-date">{{ talk.date | date: "%b %Y" }}</div>
+      <div>
+        <a class="talk-title" href="{{ base_path }}{{ talk.url }}">{{ talk.title }}</a>
+        <div class="talk-event">{{ talk.venue }}{% if talk.location %} · {{ talk.location }}{% endif %}{% if talk.talk_type %} <span class="badge">{{ talk.talk_type }}</span>{% endif %}</div>
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}
 
 <script>
   (function () {
