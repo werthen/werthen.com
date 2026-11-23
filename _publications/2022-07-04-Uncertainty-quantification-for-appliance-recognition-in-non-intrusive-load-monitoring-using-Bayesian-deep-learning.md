@@ -5,9 +5,9 @@ permalink: /publication/2022-07-04-Uncertainty-quantification-for-appliance-reco
 category: journal
 date: 2022-07-04
 venue: 'Energy and Buildings'
+doi: '10.1016/j.enbuild.2022.112282'
 paperurl: 'https://doi.org/10.1016%2Fj.enbuild.2022.112282'
 authors: 'Lorin Werthen-Brabants, Tom Dhaene, Dirk Deschrijver'
 citation: '&quot;Uncertainty quantification for appliance recognition in non-intrusive load monitoring using Bayesian deep learning.&quot; Energy and Buildings, 2022.'
 tldr: "Bayesian deep learning provides calibrated uncertainty estimates for appliance recognition in non-intrusive load monitoring."
 ---
-[Access paper here](https://doi.org/10.1016%2Fj.enbuild.2022.112282){:target="_blank"}
